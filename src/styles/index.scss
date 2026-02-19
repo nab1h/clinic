@@ -1,3 +1,6 @@
+@use "variables" as *;
+
+
 .btn {
   padding: 0.75rem 2rem;
   border-radius: 999px;
@@ -5,8 +8,8 @@
   cursor: pointer;
   font-weight: 600;
   font-size: 1rem;
-  background-color: #F1F7FA;
-  color: #000;
+  background-color: $primary-gray-light;
+  color: $black;
   transition: transform 0.5s ease, box-shadow 0.15s ease, opacity 0.15s ease;
   &:hover {
     transform: translateY(-1px);
@@ -21,18 +24,18 @@
 .btn--outline {
   padding: 0.75rem 2rem;
   border-radius: 999px;
-  border: 1px solid #f1f7fa;
+  border: 1px solid $primary-gray-light;
   cursor: pointer;
   font-weight: 600;
   font-size: 1rem;
   background-color: transparent;
-  color: #f1f7fa;
+  color: $primary-gray-light;
   transition: background-color 0.5s ease, color 0.15s ease,
     box-shadow 0.15s ease, transform 0.15s ease;
 
   &:hover {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: $white;
+    color: $black;
     transform: translateY(-1px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   }

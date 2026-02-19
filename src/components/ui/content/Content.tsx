@@ -8,8 +8,8 @@ interface IContent {
     return(
     <div className="content-wrapper">
         <h4>مرحبا بك في {name}</h4>
-        <h1 className="font-bold text-white">{content}</h1>
-        <p className="text-gray-500 font-thin">بسم الله الرحمن الرحيم الحمدلله رب العاليمن الرحمن الرحيم مالك يوم الدين اياك نعبد واياك نعين</p>
+        <h1 className="font-bold">{content}</h1>
+        <p className="text-gray-500 font-thin mt-5">بسم الله الرحمن الرحيم الحمدلله رب العاليمن الرحمن الرحيم مالك يوم الدين اياك نعبد واياك نعين</p>
     </div>
 )
   };
