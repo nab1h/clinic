@@ -1,10 +1,13 @@
-h4{
-    display: inline-block;
-    color: #13C5CC;
-    padding: 5px;
-    border-bottom: 4px solid #838C98;
-    margin: 5px 0px;
-}
-h1{
-    font-size: 76px;
+.content-wrapper {
+    h4 {
+        display: inline-block;
+        color: #13C5CC;
+        padding: 5px;
+        border-bottom: 4px solid #838C98;
+        margin: 5px 0px;
+    }
+    
+    h1 {
+        font-size: 76px;
+    }
 }

@@ -1,0 +1,21 @@
+.circle{
+    width: 150px;
+    padding: 5px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #EFF5F9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+
+    h4{
+        color: #1D2A4D;
+        font-weight: bold;
+    }
+    h5{
+        color: #13C5CC;
+        font-weight: bold;
+    }
+}
