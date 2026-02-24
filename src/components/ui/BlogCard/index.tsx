@@ -10,7 +10,9 @@ interface IComment {
   content: string;
   date: string;
 }
+
 const COMMENTS_PER_PAGE = 2; // عدد الكومنتات في كل صفحة
+
 interface IProps {
   title: string;
   description: string;
@@ -55,7 +57,7 @@ const BlogCard = ({
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="mx-auto">
       {/* ===== Blog Card ===== */}
       <div className="overflow-hidden flex flex-col items-start bg-[var(--primary-bg-light)] rounded-2xl shadow-md">
         {/* Image */}
