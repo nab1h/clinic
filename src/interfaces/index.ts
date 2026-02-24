@@ -1,7 +1,4 @@
 export interface Doctor {
-    twitter: string | undefined;
-    facebook: string | undefined;
-    linkedin: string | undefined;
     id: number;
     name: string;
     specialty: string;
