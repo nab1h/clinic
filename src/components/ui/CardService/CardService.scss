@@ -6,6 +6,8 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    overflow: visible;
+    position: relative;
     .oval{
         background-color: $primary-cyan;
         padding: 20px;
