@@ -1,10 +1,14 @@
 import "./App.css";
-import ButtonArrow from "./components/ui/ButtonArrow";
+// import ButtonArrow from "./components/ui/ButtonArrow";
 import CardService from "./components/ui/CardService";
 import Content from "./components/ui/content/Content";
 // import BlogCard from "./components/ui/BlogCard";
-import { FaUserDoctor } from "react-icons/fa6";
+// import { FaUserDoctor } from "react-icons/fa6";
 import TestimonialCard from "./components/ui/TestimonialCard";
+import FAQAccordion from "./components/ui/FAQAccordion";
+import DoctorsSlider from "./components/ui/DoctorsSlider";
+
+// import CardContent from "./components/ui/CardContact";
 // import Input from "./components/ui/Input";
 // import BookingForm from "./components/ui/BookingForm";
 
@@ -16,13 +20,17 @@ function App() {
         content="بسم الله الرحمن الرحيم مالك يوم الدين"
       />
       <CardService
-        icon={FaUserDoctor}
+        image="https://picsum.photos/300/200"
         address="الطوارئ"
         desc="بسم الله الرحمن الرحيم الحمدلله رب العالمين "
-        colorIcon="white"
-        sizeIcone={56}
       />
-      <ButtonArrow direction="right" />
+
+      {/* <CardContent
+        icon={FaUserDoctor}
+        address="الطوارئ"
+        sizeIcone={56}
+      /> */}
+      {/* <ButtonArrow direction="right" /> */}
       <TestimonialCard
         testimonials={[
           {
@@ -69,6 +77,8 @@ function App() {
           },
         ]}
       />
+
+
       {/* <BookingForm title="احجز معادك">
         <Input name="name" placeholder="الاسم" label="الاسم" type="text" required={true} />
       </BookingForm> */}
@@ -113,6 +123,23 @@ function App() {
         ]}
         
       /> */}
+
+<DoctorsSlider />
+
+      <FAQAccordion
+  faqs={[
+    {
+      id: 1,
+      question: "إيه هي خدماتكم؟",
+      answer: "نقدم مجموعة متنوعة من الخدمات...",
+    },
+    {
+      id: 2,
+      question: "إزاي أتواصل معاكم؟",
+      answer: "تقدر تتواصل معانا عن طريق...",
+    },
+  ]}
+/>
     </>
   );
 }
