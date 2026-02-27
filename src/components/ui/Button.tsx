@@ -10,7 +10,7 @@ interface IButtonProps {
 const Button = ({ children, variant= "primary" }: IButtonProps) => {
   const className= variant === "outline" ? "btn btn--outline" : "btn";
 
-  return <button className={className}>{children}</button>;
+  return <button className={`${className}`}><span className="text-inherit">{children}</span></button>;
 };
 
 export default Button;

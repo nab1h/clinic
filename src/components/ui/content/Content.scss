@@ -1,5 +1,6 @@
 @use "../../../styles/variables" as *;
 .content-wrapper {
+
     h4 {
         display: inline-block;
         color: $primary-cyan;
@@ -9,7 +10,7 @@
     }
     
     h1 {
-        font-size: 76px;
+        font-size: clamp(28px, 6vw, 76px);
         color: $black;
     }
 }

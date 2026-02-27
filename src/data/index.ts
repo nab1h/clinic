@@ -1,4 +1,5 @@
-import type { Doctor } from "../interfaces";
+import type { Doctor, IArticleCardProps, Services, Tag } from "../interfaces";
+
 export const inputBooking = [
   {
     name: "name",
@@ -79,3 +80,51 @@ export const sampleDoctors: Doctor[] = [
     social: { twitter: "#", facebook: "#", linkedin: "#" },
   },
 ];
+
+
+export const defaultCategories: Services[] = [
+  { id: 1, label: "تصميم المواقع", href: "/category/web-design" },
+  { id: 2, label: "تطوير الويب", href: "/category/web-development" },
+  { id: 3, label: "تطوير الويب المتقدم", href: "/category/advanced-web-development", active: true },
+  { id: 4, label: "بحث الكلمات المفتاحية", href: "/category/keyword-research" },
+  { id: 5, label: "التسويق بالبريد الإلكتروني", href: "/category/email-marketing" },
+];
+
+export const defaultTags: Tag[] = [
+  { id: 1, label: "تصميم", href: "/tags/design" },
+  { id: 2, label: "تطوير", href: "/tags/development" },
+  { id: 3, label: "تسويق", href: "/tags/marketing" },
+  { id: 4, label: "سيو", href: "/tags/seo" },
+  { id: 5, label: "كتابة", href: "/tags/writing" },
+  { id: 6, label: "استشارات", href: "/tags/consulting" },
+  { id: 7, label: "تصميم جرافيك", href: "/tags/graphic-design" },
+  { id: 8, label: "تطوير ويب", href: "/tags/web-dev" },
+  { id: 9, label: "تسويق رقمي", href: "/tags/digital-marketing" },
+  { id: 10, label: "سيو متقدم", href: "/tags/advanced-seo" },
+  { id: 11, label: "كتابة إبداعية", href: "/tags/creative-writing" },
+  { id: 12, label: "استشارات أعمال", href: "/tags/business" },
+];
+
+
+export const articalCard:IArticleCardProps[] = [
+  {
+    image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=300&q=80',
+    title: 'بسم الله الرحمن الرحيم مالك يوم الدين اياك نعبد واياك نستعين اهدنا الصراط المستقيم صراط اللزين انعمت عليهم ',
+    imageAlt: 'بسم الله الرحمن الرحيم'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=300&q=80',
+    title: 'بسم الله الرحمن الرحيم مالك يوم الدين اياك نعبد واياك نستعين اهدنا الصراط المستقيم صراط اللزين انعمت عليهم ',
+    imageAlt: 'بسم الله الرحمن الرحيم'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=300&q=80',
+    title: 'بسم الله الرحمن الرحيم مالك يوم الدين اياك نعبد واياك نستعين اهدنا الصراط المستقيم صراط اللزين انعمت عليهم ',
+    imageAlt: 'بسم الله الرحمن الرحيم'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=300&q=80',
+    title: 'بسم الله الرحمن الرحيم مالك يوم الدين اياك نعبد واياك نستعين اهدنا الصراط المستقيم صراط اللزين انعمت عليهم ',
+    imageAlt: 'بسم الله الرحمن الرحيم'
+  },
+]

@@ -1,9 +1,11 @@
 import "./App.css";
-import Footer from "./components/pages/Footer";
+import HomePage from "./components/pages/HomePage";
 function App() {
   return (
     <>
-      <Footer />
+    <div className="mx-auto px-16">
+        <HomePage />
+    </div>
     </>
   );
 }
