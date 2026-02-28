@@ -1,24 +1,27 @@
 @use "../../../styles/variables" as *;
 
-.address-wropper{
-    h5{
-        display: inline-block;
-        font-weight: 900;
-        font-size: 23px;
-        padding: 1px 0px;
-        margin: 10px 0px;
-        border-bottom: 3px solid $primary-gray-dark;
-        
-        &.text-cyan {
-            color: $primary-cyan;
-        }
-        
-        &.text-white {
-            color: $white;
-        }
+.address-wropper {
+    h5 {
+      display: inline-block;
+      font-weight: 900;
+      font-size: clamp(16px, 2.5vw, 23px);
+      padding: 1px 0px;
+      margin: 10px 0px;
+      border-bottom: 3px solid var(--color-gray-dark);
+  
+      &.text-cyan {
+        color: var(--color-primary);
+      }
+  
+      &.text-white {
+        color: var(--color-white);
+      }
     }
-    h1{
-        font-size: 76px;
-        color: $black;
+  
+    h1 {
+      font-size: clamp(32px, 6vw, 76px);
+      color: var(--color-black);
+      line-height: 1.2;
+      word-break: break-word;
     }
-}
+  }

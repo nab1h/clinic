@@ -34,8 +34,8 @@ const FAQAccordion = ({ faqs }: IProps) => {
               key={faq.id}
               className={`rounded-xl border transition-all duration-300 overflow-hidden ${
                 isOpen
-                  ? "border-[var(--primary-cyan)] shadow-md"
-                  : "border-transparent bg-[var(--primary-bg-light)]"
+                  ? "border-[var(--color-primary)] shadow-md"
+                  : "border-transparent bg-[var(--color-gray-light)]"
               }`}
             >
               {/* Question */}
@@ -43,8 +43,8 @@ const FAQAccordion = ({ faqs }: IProps) => {
                 onClick={() => toggle(faq.id)}
                 className={`w-full flex items-center justify-between gap-4 px-5 py-4 text-right transition-all duration-300 cursor-pointer ${
                   isOpen
-                    ? "bg-[var(--primary-cyan)]"
-                    : "bg-[var(--primary-bg-light)] hover:bg-[var(--primary-gray-light)]"
+                    ? "bg-[var(--color-primary)]"
+                    : "bg-[var(--color-bg-light)] hover:bg-[var(--color-gray-light)]"
                 }`}
               >
                 <BsChevronDown
@@ -69,7 +69,7 @@ const FAQAccordion = ({ faqs }: IProps) => {
                   isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                 } overflow-hidden`}
               >
-                <p className="text-[var(--primary-gray-dark)] text-sm leading-relaxed px-5 py-4 text-right bg-white">
+                <p className="text-[var(--color-gray-dark)] text-sm leading-relaxed px-5 py-4 text-right bg-white">
                   {faq.answer}
                 </p>
               </div>

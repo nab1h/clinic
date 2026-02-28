@@ -1,21 +1,40 @@
-.circle{
-    width: 150px;
+.circle {
+    width: clamp(90px, 15vw, 150px);
+    height: clamp(90px, 15vw, 150px);
     padding: 5px;
-    height: 150px;
     border-radius: 50%;
-    background-color: #EFF5F9;
+    background-color: #eff5f9;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 6px;
-
-    h4{
-        color: #1D2A4D;
-        font-weight: bold;
+  
+    h4 {
+      color: #1d2a4d;
+      font-weight: bold;
+      font-size: clamp(10px, 1.5vw, 14px);
+      text-align: center;
     }
-    h5{
-        color: #13C5CC;
-        font-weight: bold;
+  
+    h5 {
+      color: #13c5cc;
+      font-weight: bold;
+      font-size: clamp(9px, 1.2vw, 12px);
+      text-align: center;
     }
-}
+  
+    @media (max-width: 639px) {
+      width: 190px;
+      height: 190px;
+      padding: 5px;
+  
+      h4 {
+        font-size: 13px;
+      }
+  
+      h5 {
+        font-size: 11px;
+      }
+    }
+  }

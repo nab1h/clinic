@@ -1,14 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
+import type { ITestimonial } from "../../../interfaces";
 
-interface ITestimonial {
-  id: number;
-  name: string;
-  profession: string;
-  image: string;
-  review: string;
-}
 
 interface IProps {
   testimonials: ITestimonial[];
@@ -16,7 +10,7 @@ interface IProps {
 
 const TestimonialCard = ({ testimonials }: IProps) => {
   return (
-    <div className="max-w-2xl mx-auto py-16 px-6">
+    <div className="w-full mx-auto py-16 px-6 -mx-16">
       <Swiper
       className="!flex !flex-row"
         modules={[Autoplay, Pagination]}

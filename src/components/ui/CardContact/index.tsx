@@ -3,11 +3,11 @@ import "./CardContact.scss";
 interface IProps{
     icon: IconType;
     address: string;
-    sizeIcone: number;
+    sizeIcone?: number;
 }
-const CardContent = ({icon:Icon, address ,sizeIcone} : IProps)=>{
+const CardContent = ({icon:Icon, address ,sizeIcone= 24} : IProps)=>{
     return(
-        <div className="flex flex-colum items-center card-wriper group relative overflow-visible">
+        <div className="flex flex-colum items-center card-wriper group relative overflow-visible rounded-xl">
                 <div className="oval">
                     <Icon className="Icon" size={sizeIcone} style={{color : "white"}} />
                 </div>

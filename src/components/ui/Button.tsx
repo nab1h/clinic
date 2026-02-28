@@ -6,11 +6,12 @@ import "../../styles/index.scss";
 interface IButtonProps {
   children: ReactNode;
   variant: "outline" | "primary";
+  className?: string;
 }
-const Button = ({ children, variant= "primary" }: IButtonProps) => {
-  const className= variant === "outline" ? "btn btn--outline" : "btn";
+const Button = ({ children, variant= "primary" ,className }: IButtonProps) => {
+  const styl= variant === "outline" ? "btn btn--outline" : "btn";
 
-  return <button className={`${className}`}><span className="text-inherit">{children}</span></button>;
+  return <button className={`${styl} ${className}`}><span className="text-inherit">{children}</span></button>;
 };
 
 export default Button;

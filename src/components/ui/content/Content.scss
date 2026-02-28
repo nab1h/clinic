@@ -1,16 +1,18 @@
 @use "../../../styles/variables" as *;
 .content-wrapper {
+  h4 {
+    display: inline-block;
+    padding: 5px;
+    border-bottom: 4px solid $primary-gray-dark;
+    margin: 5px 0px;
+    font-weight: 600;
+  }
 
-    h4 {
-        display: inline-block;
-        color: $primary-cyan;
-        padding: 5px;
-        border-bottom: 4px solid $primary-gray-dark;
-        margin: 5px 0px;
-    }
-    
-    h1 {
-        font-size: clamp(28px, 6vw, 76px);
-        color: $black;
-    }
+  h1 {
+    font-size: clamp(24px, 4vw, 43px);
+    font-weight: 800;
+    color: white;
+    line-height: 1.3;
+    word-break: break-word;
+  }
 }
