@@ -24,12 +24,19 @@ export  interface Tag {
     href: string;
   }
 
-export interface IArticleCardProps {
-  
-  image: string;
-  title: string;
-  imageAlt?: string;
-}
+
+  export interface IArticleCardProps {
+    id: number;
+    image: string;
+    title: string;
+    imageAlt?: string;
+    description?: string;
+    date?: string;
+    author?: string;
+    views?: number;
+    comments?: number;
+    authetImage?: string;
+  }
 export interface IService {
   id: number;
   image: string;

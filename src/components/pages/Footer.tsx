@@ -34,13 +34,6 @@ const Footer: React.FC = () => {
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
-
-        * {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-        }
-
         .footer-wrapper {
           font-family: 'Cairo', sans-serif;
           direction: rtl;

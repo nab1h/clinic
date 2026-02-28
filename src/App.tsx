@@ -5,10 +5,12 @@ import CirclePage from "./components/pages/CirclePage";
 import ContactPage from "./components/pages/ContactPage";
 import DoctorPage from "./components/pages/DoctorPage";
 import HomePage from "./components/pages/HomePage";
+import Layout from "./components/pages/Blog/Layout";
 import QAPage from "./components/pages/QAPage";
 import ServicePage from "./components/pages/ServicePage";
 import TestimonialPage from "./components/pages/TestimonialPage";
 import Navbar from "./components/ui/Navbar";
+import ArticlePage from "./components/pages/Blog/ArticalPage";
 function App() {
   return (
     <>
@@ -23,6 +25,8 @@ function App() {
         <QAPage />
         <Navbar logo="/logo.png" clinicName="عيادة الأمانة" />
         <ContactPage />
+        <Layout />
+        <ArticlePage />
     </div>
     </>
   );
