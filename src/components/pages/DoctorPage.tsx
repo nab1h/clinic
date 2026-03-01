@@ -5,7 +5,7 @@ interface IProps {}
 
 const DoctorPage: React.FC<IProps> = () => {
   return (
-    <div className="-mx-16">
+    <div id="doctor">
       <DoctorsSlider />
     </div>
   );

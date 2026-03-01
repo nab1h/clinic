@@ -1,33 +1,28 @@
+import { Outlet } from "react-router-dom";
 import "./App.css";
-import AboutPage from "./components/pages/AboutPage";
-import BookingPage from "./components/pages/BookingPage";
-import CirclePage from "./components/pages/CirclePage";
-import ContactPage from "./components/pages/ContactPage";
-import DoctorPage from "./components/pages/DoctorPage";
+import Layout from "./components/pages/Layout";
 import HomePage from "./components/pages/HomePage";
-import Layout from "./components/pages/Blog/Layout";
-import QAPage from "./components/pages/QAPage";
+import AboutPage from "./components/pages/AboutPage";
 import ServicePage from "./components/pages/ServicePage";
+import DoctorPage from "./components/pages/DoctorPage";
+import TestimonialCard from "./components/ui/TestimonialCard";
 import TestimonialPage from "./components/pages/TestimonialPage";
-import Navbar from "./components/ui/Navbar";
-import ArticlePage from "./components/pages/Blog/ArticalPage";
+import BookingPage from "./components/pages/BookingPage";
+
+
 function App() {
   return (
     <>
-    <div className="mx-auto px-8 overflow-hidden">
+
+      <Layout>
         <HomePage />
         <AboutPage />
         <ServicePage />
-        <BookingPage />
         <DoctorPage />
-        <TestimonialPage />
-        <CirclePage />
-        <QAPage />
-        <Navbar logo="/logo.png" clinicName="عيادة الأمانة" />
-        <ContactPage />
-        <Layout />
-        <ArticlePage />
-    </div>
+        <TestimonialPage/>
+        <BookingPage />
+        <Outlet /> 
+      </Layout>
     </>
   );
 }

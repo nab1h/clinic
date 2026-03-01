@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { links } from "../../data";
+import { NavLink } from "react-router-dom";
 
 interface IProps {
   logo: string;
@@ -28,12 +29,12 @@ const Navbar: React.FC<IProps> = ({ logo, clinicName = "عيادتنا" }) => {
         <ul className="hidden md:flex items-center gap-6">
           {links.map((link) => (
             <li key={link.label}>
-              <a
-                href={link.href}
+              <NavLink
+                to={link.href}
                 className="text-gray-600 hover:text-blue-600 font-medium text-sm transition-colors duration-200"
               >
                 {link.label}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>

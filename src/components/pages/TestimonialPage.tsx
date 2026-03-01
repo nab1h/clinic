@@ -7,7 +7,7 @@ import TestimonialForm from "../ui/TestimonialForm";
 interface IProps{}
 const TestimonialPage: React.FC<IProps> = ()=>{
     return(
-        <div className="mt-20">
+        <div className="" id="testimonial">
             <AddressPage address={"أراء عملائنا"} title={"تعرف علي اراء عملائنا"} />
             <TestimonialCard testimonials={testimonials} />
             <TestimonialForm />

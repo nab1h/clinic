@@ -5,7 +5,7 @@ import BlogCard from "../ui/BlogCard";
 interface IProps {}
 const CirclePage: React.FC<IProps> = () => {
   return (
-    <div className="mt-20">
+    <div className="" id="blog">
       <AddressPage address={"المقالات"} title={"بعض المقالات "} />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
       <BlogCard

@@ -6,7 +6,7 @@ interface IProps {}
 
 const HomePage: React.FC<IProps> = () => {
   return (
-    <div className="hero-section min-h-screen -mx-16 px-8 md:px-16 mt-20 flex items-center">
+    <div className="hero-section min-h-screen -mx-16 px-8 md:px-16 flex items-center" id="home">
       <div className="grid grid-cols-1 md:grid-cols-9 items-center w-full">
         <div className="md:col-span-6 flex flex-col items-center text-right text-center">
           <Content

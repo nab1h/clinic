@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { links } from "../../data";
 
 const Footer: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -12,23 +13,6 @@ const Footer: React.FC = () => {
     }
   };
 
-  const quickLinks = [
-    "الرئيسية",
-    "من نحن",
-    "خدماتنا",
-    "فريق العمل",
-    "أحدث المقالات",
-    "تواصل معنا",
-  ];
-
-  const popularLinks = [
-    "الرئيسية",
-    "من نحن",
-    "خدماتنا",
-    "فريق العمل",
-    "أحدث المقالات",
-    "تواصل معنا",
-  ];
 
   return (
     <>
@@ -247,7 +231,6 @@ const Footer: React.FC = () => {
 
       <footer className="footer-wrapper">
         <div className="footer-main">
-          {/* تواصل معنا */}
           <div>
             <div className="footer-section-title">تواصل معنا</div>
             <p className="contact-desc">
@@ -274,37 +257,36 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* روابط سريعة */}
           <div>
             <div className="footer-section-title">روابط سريعة</div>
             <ul className="links-list">
-              {quickLinks.map((link) => (
-                <li key={link}>
-                  <a href="#">
+              {links.map((link) => (
+                <li key={link.id}>
+                  <a href={link.href}>
                     <span className="link-arrow">›</span>
-                    {link}
+                    {link.label}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* روابط شائعة */}
+
           <div>
             <div className="footer-section-title">روابط شائعة</div>
             <ul className="links-list">
-              {popularLinks.map((link) => (
-                <li key={link}>
-                  <a href="#">
+              {links.map((link) => (
+                <li key={link.id}>
+                  <a href={link.href}>
                     <span className="link-arrow">›</span>
-                    {link}
+                    {link.label}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* النشرة البريدية */}
+
           <div>
             <div className="footer-section-title">النشرة البريدية</div>
             <div className="newsletter-input-row">
@@ -345,10 +327,10 @@ const Footer: React.FC = () => {
         <div className="footer-bottom">
           <div className="footer-bottom-inner">
             <span>
-              © <a href="#">اسم موقعك</a>. جميع الحقوق محفوظة.
+              © <a href="https://nabih.online">Nabih Alashmawy</a>. جميع الحقوق محفوظة.
             </span>
             <span>
-              تصميم بواسطة <a href="#">HTML Codex</a>
+              تصميم بواسطة <a href="https://nabih.online">Nabih Alashmawy</a>
             </span>
           </div>
         </div>

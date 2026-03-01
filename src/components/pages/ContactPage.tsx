@@ -6,7 +6,7 @@ import CardContent from "../ui/CardContact";
 interface IProps {}
 const ContactPage: React.FC<IProps> = () => {
   return (
-    <div className="mt-20">
+    <div className="" id="contact">
       <AddressPage address={"اتصل بنا"} title={"هل لديك سؤال ؟"} />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 rounded-xl">
         {contactData.map((item) => (

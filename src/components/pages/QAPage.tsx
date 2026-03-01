@@ -5,7 +5,7 @@ import FAQAccordion from "../ui/FAQAccordion";
 interface IProps {}
 const QAPage: React.FC<IProps> = () => {
   return (
-    <div className="mt-20">
+    <div className="" id="qa">
       <div className="row">
             <div className="col-1">
                 <FAQAccordion faqs={faqs} />

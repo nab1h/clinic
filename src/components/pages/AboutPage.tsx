@@ -6,10 +6,8 @@ interface IProps {}
 
 const AboutPage: React.FC<IProps> = () => {
   return (
-    <div className="py-20 min-h-screen -mx-16 px-8 md:px-16 py-16 mt-20">
+    <div className="min-height-[400px]" id="about">
       <div className="grid grid-cols-1 md:grid-cols-9 items-center gap-10">
-
-        {/* الصورة */}
         <div
           className="w-full md:col-span-3 rounded-xl overflow-hidden"
           style={{ height: "400px" }}

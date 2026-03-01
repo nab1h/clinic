@@ -44,9 +44,7 @@ const DoctorCard: React.FC<{ doctor: Doctor }> = ({ doctor }) => {
 const DoctorsSlider: React.FC = () => {
   return (
     <section className="doctors-section overflow-hidden" dir="rtl">
-
       <AddressPage address={"فريق طبي"} title={"متخصصون"} />
-
       <Swiper
         modules={[Navigation, Pagination]}
         slidesPerView={1}

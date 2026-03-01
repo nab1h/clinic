@@ -4,7 +4,7 @@ import Content from "../ui/content/Content";
 interface IProps {}
 const BookingPage: React.FC<IProps> = () => {
     return (
-      <div className="bg-[var(--color-primary)] min-h-screen -mx-16 px-8 md:px-16 py-16 mt-20">
+      <div className="bg-[var(--color-primary)] min-h-screen -mx-16 px-8 px-16 py-16" id="booking">
         <div className="grid grid-cols-1 md:grid-cols-10 items-center gap-10 h-full">
           <div className="md:col-span-5 flex flex-col items-start text-right">
             <Content
