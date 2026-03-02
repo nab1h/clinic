@@ -50,8 +50,8 @@ const Navbar: React.FC<IProps> = ({ logo, clinicName = "عيادتنا" }) => {
         {/* CTA Button */}
         <div className="hidden md:block">
           <a
-            href="#"
-            className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold px-5 py-2 rounded-full transition-all duration-200"
+            href="/booking"
+            className="bg-[var(--color-primary)] hover:bg-[var(--hover-primary)] text-white text-sm font-bold px-5 py-2 rounded-full transition-all duration-200"
           >
             احجز موعد
           </a>
@@ -109,8 +109,8 @@ const Navbar: React.FC<IProps> = ({ logo, clinicName = "عيادتنا" }) => {
             ))}
           </ul>
           <a
-            href="#"
-            className="mt-4 block text-center bg-blue-600 text-white text-sm font-bold px-5 py-2 rounded-full"
+            href="/booking"
+            className="mt-4 block text-center bg-[var(--color-primary)] text-white text-sm font-bold px-5 py-2 rounded-full"
           >
             احجز موعد
           </a>

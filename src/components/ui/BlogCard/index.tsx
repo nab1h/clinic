@@ -22,6 +22,7 @@ interface IProps {
   views: number;
   comments: number;
   authetImage: string;
+  onClick: ()=>void;
   commentsList?: IComment[];
 }
 const BlogCard = ({
@@ -34,6 +35,7 @@ const BlogCard = ({
   comments,
   authetImage,
   commentsList,
+  onClick
 }: IProps) => {
   const hasComments = commentsList && commentsList.length > 0;
 
@@ -57,7 +59,7 @@ const BlogCard = ({
   };
 
   return (
-    <div className="mx-auto">
+    <div className="mx-auto" onClick={onClick}>
       {/* ===== Blog Card ===== */}
       <div className="overflow-hidden flex flex-col items-start bg-[var(--primary-bg-light)] rounded-2xl shadow-md">
         {/* Image */}

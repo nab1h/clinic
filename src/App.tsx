@@ -6,7 +6,6 @@ import Layout from "./components/pages/Layout";
 function App() {
   return (
     <>
-
       <Layout>
         <Outlet /> 
       </Layout>

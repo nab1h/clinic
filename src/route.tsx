@@ -2,7 +2,10 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import LandingPage from "./components/pages/LandingPage";
 import ContactPage from "./components/pages/ContactPage";
-import BlogLayout from "./components/pages/Blog/BlogLayout";
+import BookingPage from "./components/pages/BookingPage";
+import ArticlePage from "./components/pages/Blog/ArticalPage";
+import CirclePage from "./components/pages/CirclePage";
+import ServiceSinglePage from "./components/pages/ServiceSinglePage";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -14,12 +17,25 @@ export const router = createBrowserRouter([
       },
       {
         path: "/blog",
-        element: <BlogLayout />,
+        element: <CirclePage />,
       },
       {
         path: "/contact",
         element: <ContactPage />,
       },
+      {
+        path: "/service/:id",
+        element: <ServiceSinglePage />,
+      },
+      {
+        path: "/booking",
+        element: <BookingPage />,
+      },
+      {
+        path: "/artical/:id",
+        element: <ArticlePage />,
+      },
+      
     ],
   },
 

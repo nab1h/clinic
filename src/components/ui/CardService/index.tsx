@@ -6,11 +6,12 @@ interface IProps {
   address: string;
   desc: string;
   image: string;
+  onClick: ()=>void;
 }
 
-const CardService = ({ id, address, desc, image }: IProps) => {
+const CardService = ({ id, address, desc, image , onClick}: IProps) => {
   return (
-    <div className="flex flex-col items-start card-wriper group relative overflow-hidden bg-[var(--color-bg-light)] rounded-xl">
+    <div className="flex flex-col items-start card-wriper group relative overflow-hidden bg-[var(--color-bg-light)] rounded-xl" onClick={onClick}>
       <div className="h-80 w-full rounded-t-2xl overflow-hidden">
         <img
           src={image}

@@ -6,7 +6,7 @@ interface IProps {}
 
 const AboutPage: React.FC<IProps> = () => {
   return (
-    <div className="min-height-[400px]" id="about">
+    <div className="min-height-[400px] my-20" id="about">
       <div className="grid grid-cols-1 md:grid-cols-9 items-center gap-10">
         <div
           className="w-full md:col-span-3 rounded-xl overflow-hidden"

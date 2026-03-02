@@ -25,7 +25,7 @@ export  interface Tag {
   }
 
 
-  export interface IArticleCardProps {
+export interface IArticleCardProps {
     id: number;
     image: string;
     title: string;
@@ -36,7 +36,25 @@ export  interface Tag {
     views?: number;
     comments?: number;
     authetImage?: string;
-  }
+}
+export interface IArticle {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  date: string;
+  author: string;
+  authorImage: string;
+  views: number;
+  comments: IComment[];
+}
+export interface IComment {
+  id: number;
+  author: string;
+  authorImage: string;
+  content: string;
+  date: string;
+}
 export interface IService {
   id: number;
   image: string;

@@ -8,6 +8,7 @@
   --color-bg-light:       #EFF5F9;
   --color-white:          #FFFFFF;
   --color-black:          #1D2A4D;
+  --hover-primary:        #7ddde2;
 
   /* ── Font Sizes ─────────────────────────────── */
   --font-size-2xs:  0.625rem;  /* 10px */
@@ -44,6 +45,9 @@
 }
 
 /* ── Global Styles ───────────────────────────── */
+* {
+  box-sizing: border-box;
+}
 body {
   box-sizing: border-box;
   direction: rtl;
@@ -53,5 +57,6 @@ body {
   padding: 0;
 }
 html {
-  scroll-behavior: smooth !important;
+  scroll-padding-top: 0 !important;
+  scroll-behavior: auto !important;
 }
