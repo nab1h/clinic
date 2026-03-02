@@ -303,9 +303,9 @@ export const faqs = [
 ];
 
 export const links = [
-  { id: 1, label: "الرئيسية", href: "#home" },
-  { id: 2, label: "من نحن", href: "#about" },
-  { id: 3, label: "خدماتنا", href: "#services" },
+  { id: 1, label: "الرئيسية", href: "/#home" },
+  { id: 2, label: "من نحن", href: "/#about" },
+  { id: 3, label: "خدماتنا", href: "/#services" },
   { id: 4, label: "أطباؤنا", href: "/doctors" },
   { id: 5, label: "المدونة", href: "/blog" },
   { id: 6, label: "تواصل معنا", href: "/contact" },

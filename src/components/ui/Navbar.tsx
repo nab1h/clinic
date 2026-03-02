@@ -1,15 +1,12 @@
 import { useState } from "react";
 import { links } from "../../data";
-import { NavLink } from "react-router-dom";
-
+import { NavHashLink } from "react-router-hash-link";
 interface IProps {
   logo: string;
   clinicName?: string;
 }
-
 const Navbar: React.FC<IProps> = ({ logo, clinicName = "عيادتنا" }) => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <nav
       dir="rtl"
@@ -29,12 +26,24 @@ const Navbar: React.FC<IProps> = ({ logo, clinicName = "عيادتنا" }) => {
         <ul className="hidden md:flex items-center gap-6">
           {links.map((link) => (
             <li key={link.label}>
-              <NavLink
+              <NavHashLink
+                smooth
                 to={link.href}
-                className="text-gray-600 hover:text-blue-600 font-medium text-sm transition-colors duration-200"
+                className={({ isActive }) => {
+                  const isCurrentHash =
+                    window.location.hash ===
+                    (link.href.includes("#")
+                      ? `#${link.href.split("#")[1]}`
+                      : "");
+                  return `text-sm transition-colors duration-200 font-medium pb-1 ${
+                    isActive && isCurrentHash
+                      ? "text-blue-600 font-bold border-b-2 border-blue-600"
+                      : "text-gray-600 hover:text-blue-500"
+                  }`;
+                }}
               >
                 {link.label}
-              </NavLink>
+              </NavHashLink>
             </li>
           ))}
         </ul>
@@ -82,13 +91,20 @@ const Navbar: React.FC<IProps> = ({ logo, clinicName = "عيادتنا" }) => {
           <ul className="flex flex-col gap-3 mt-3">
             {links.map((link) => (
               <li key={link.label}>
-                <a
-                  href={link.href}
-                  className="block text-gray-600 hover:text-blue-600 font-medium text-sm py-2 border-b border-gray-50"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </a>
+                <NavHashLink
+            smooth
+            to={link.href}
+            className={({ isActive }) => 
+              `block py-3 text-sm font-medium transition-all ${
+                isActive && window.location.hash === (link.href.includes('#') ? `#${link.href.split('#')[1]}` : '')
+                ? "text-blue-600 bg-blue-50 px-3 rounded-md"
+                : "text-gray-600 hover:text-blue-600 px-3"
+              }`
+            }
+            onClick={() => setIsOpen(false)}
+          >
+            {link.label}
+          </NavHashLink>
               </li>
             ))}
           </ul>
