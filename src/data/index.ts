@@ -2,14 +2,14 @@ import type {
   Doctor,
   IArticle,
   IArticleCardProps,
-  IService,
+  IPropBooking,
   IServices,
   ITestimonial,
   Services,
   Tag,
 } from "../interfaces";
 import { FaPhone, FaMapMarkerAlt, FaEnvelope, FaClock } from "react-icons/fa";
-export const inputBooking = [
+export const inputBooking: IPropBooking[] = [
   {
     name: "name",
     type: "text",

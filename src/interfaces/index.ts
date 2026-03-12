@@ -1,3 +1,5 @@
+import type { ChangeEvent } from "react";
+
 export interface Doctor {
     id: number;
     name: string;
@@ -9,22 +11,27 @@ export interface Doctor {
       facebook?: string;
       linkedin?: string;
     };
-  }
-
+}
+export interface IPropBooking {
+  name: string;
+  type: string;
+  placeholder: string;
+  label: string;
+  required?: boolean;
+  value?: string;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+}
 export interface Services {
     id: number;
     label: string;
     href: string;
     active?: boolean;
-  }
-
+}
 export  interface Tag {
     id: number;
     label: string;
     href: string;
-  }
-
-
+}
 export interface IArticleCardProps {
     id: number;
     image: string;
@@ -99,4 +106,12 @@ export interface Clinic {
   icon_192: string | null;
   icon_512: string | null;
   settings: ClinicSettings;
+}
+export interface Appointment {
+  name: string;
+  phone: string;
+  email: string;
+  appointment_date: string;
+  start_time: string;
+  notes: string;
 }

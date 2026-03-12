@@ -1,14 +1,17 @@
+import type { ChangeEvent } from 'react';
 import './Input.scss';
 
 interface IProps{
-    name: string;
-    type: string;
-    placeholder: string;
-    label:string;
-    required: boolean;
+name: string;
+  type: string;
+  placeholder: string;
+  label: string;
+  required?: boolean;
+  value?: string;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = ({name,type,placeholder,label,required} : IProps)=>{
+const Input = ({name,type,placeholder,label,required,value,onChange} : IProps)=>{
     return(
         <div className="input-wrapper">
             <label htmlFor={name}>{label}</label>
@@ -18,6 +21,8 @@ const Input = ({name,type,placeholder,label,required} : IProps)=>{
                 name={name}
                 placeholder={placeholder}
                 required={required}
+                value={value}
+                onChange={onChange}
             />
         </div>
     )
