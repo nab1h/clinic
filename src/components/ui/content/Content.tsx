@@ -1,7 +1,7 @@
 import "./Content.scss";
 interface IContent extends React.HTMLAttributes<HTMLDivElement> {
     name: string;
-    content: string;
+    content: string | undefined;
     description?: string;
     className?: string;
     colorTitle?: "white" | "cyan";

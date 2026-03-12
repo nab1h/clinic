@@ -6,37 +6,43 @@ import BookingPage from "./components/pages/BookingPage";
 import ArticlePage from "./components/pages/Blog/ArticalPage";
 import CirclePage from "./components/pages/CirclePage";
 import ServiceSinglePage from "./components/pages/ServiceSinglePage";
+import ServicePage from "./components/pages/ServicePage"; // 1. تأكد من استيراد صفحة الخدمات
+
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/:clinicSlug",
     element: <App />,
     children: [
       {
         index: true,
         element: <LandingPage />,
       },
+
       {
-        path: "/blog",
+        path: "services",
+        element: <ServicePage />,
+      },
+      {
+        path: "blog",
         element: <CirclePage />,
       },
       {
-        path: "/contact",
+        path: "contact",
         element: <ContactPage />,
       },
       {
-        path: "/service/:id",
+        path: "service/:id",
         element: <ServiceSinglePage />,
       },
       {
-        path: "/booking",
+        path: "booking",
         element: <BookingPage />,
       },
       {
-        path: "/artical/:id",
+        path: "artical/:id", 
         element: <ArticlePage />,
       },
       
     ],
   },
-
 ]);

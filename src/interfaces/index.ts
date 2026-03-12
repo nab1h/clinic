@@ -55,17 +55,48 @@ export interface IComment {
   content: string;
   date: string;
 }
-export interface IService {
+export interface IServices {
   id: number;
   image: string;
   name: string;
   details: string;
 }
 
+export interface IService {
+  id: number;
+  name: string;
+  description: string;
+  image: string | null;
+  price: string;
+  duration_minutes: number;
+}
 export interface ITestimonial {
   id: number;
   name: string;
   profession: string;
   image: string;
   review: string;
+}
+export interface ClinicSettings {
+  content: string;
+  message: string;
+  footer_text: string;
+  brand_color: string;
+  primary_color: string;
+}
+
+export interface Clinic {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  logo: string;
+  favicon: string | null;
+  icon_16: string | null;
+  icon_32: string | null;
+  icon_48: string | null;
+  icon_180: string | null;
+  icon_192: string | null;
+  icon_512: string | null;
+  settings: ClinicSettings;
 }

@@ -3,6 +3,7 @@ import type {
   IArticle,
   IArticleCardProps,
   IService,
+  IServices,
   ITestimonial,
   Services,
   Tag,
@@ -156,7 +157,7 @@ export const articalCard: IArticleCardProps[] = [
   },
 ];
 
-export const services: IService[] = [
+export const services: IServices[] = [
   {
     id: 1,
     image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400",
@@ -192,6 +193,8 @@ export const services: IService[] = [
     details:
       "فحص وعلاج أمراض العيون وتصحيح النظر بالليزر مع توفير أحدث العدسات والنظارات الطبية.",
   },
+
+  
   {
     id: 6,
     image: "https://images.unsplash.com/photo-1584515933487-779824d29309?w=400",
