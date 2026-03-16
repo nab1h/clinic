@@ -18,7 +18,7 @@ interface IProps {
   description: string;
   image: string;
   date: string;
-  author: string;
+  author?: string;
   views: number;
   comments: number;
   authetImage: string;

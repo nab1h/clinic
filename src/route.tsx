@@ -7,6 +7,8 @@ import ArticlePage from "./components/pages/Blog/ArticalPage";
 import CirclePage from "./components/pages/CirclePage";
 import ServiceSinglePage from "./components/pages/ServiceSinglePage";
 import ServicePage from "./components/pages/ServicePage"; // 1. تأكد من استيراد صفحة الخدمات
+import AboutPage from "./components/pages/AboutPage";
+import QAPage from "./components/pages/QAPage";
 
 export const router = createBrowserRouter([
   {
@@ -17,7 +19,10 @@ export const router = createBrowserRouter([
         index: true,
         element: <LandingPage />,
       },
-
+      {
+        path: "about",
+        element: <AboutPage />,
+      },
       {
         path: "services",
         element: <ServicePage />,
@@ -31,6 +36,10 @@ export const router = createBrowserRouter([
         element: <ContactPage />,
       },
       {
+        path: "qa",
+        element: <QAPage />,
+      },
+      {
         path: "service/:id",
         element: <ServiceSinglePage />,
       },
@@ -42,7 +51,6 @@ export const router = createBrowserRouter([
         path: "artical/:id", 
         element: <ArticlePage />,
       },
-      
     ],
   },
 ]);

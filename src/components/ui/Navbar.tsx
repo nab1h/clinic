@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { links } from "../../data";
 import { NavHashLink } from "react-router-hash-link";
+import { useParams } from "react-router-dom";
 interface IProps {
   logo: string;
   clinicName?: string;
 }
 const Navbar: React.FC<IProps> = ({ logo, clinicName = "عيادتنا" }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const {clinicSlug} = useParams<{clinicSlug: string}>();
   return (
     <nav
       dir="rtl"
@@ -28,7 +30,7 @@ const Navbar: React.FC<IProps> = ({ logo, clinicName = "عيادتنا" }) => {
             <li key={link.label}>
               <NavHashLink
                 smooth
-                to={link.href}
+                to={`/${clinicSlug}/${link.href}`}
                 className={({ isActive }) => {
                   const isCurrentHash =
                     window.location.hash ===
@@ -50,7 +52,7 @@ const Navbar: React.FC<IProps> = ({ logo, clinicName = "عيادتنا" }) => {
         {/* CTA Button */}
         <div className="hidden md:block">
           <a
-            href="/booking"
+            href={`/${clinicSlug}/booking`}
             className="bg-[var(--color-primary)] hover:bg-[var(--hover-primary)] text-white text-sm font-bold px-5 py-2 rounded-full transition-all duration-200"
           >
             احجز موعد

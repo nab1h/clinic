@@ -44,24 +44,24 @@ export interface IArticleCardProps {
     comments?: number;
     authetImage?: string;
 }
-export interface IArticle {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  date: string;
-  author: string;
-  authorImage: string;
-  views: number;
-  comments: IComment[];
-}
-export interface IComment {
-  id: number;
-  author: string;
-  authorImage: string;
-  content: string;
-  date: string;
-}
+// export interface IArticle {
+//   id: number;
+//   title: string;
+//   description: string;
+//   image: string;
+//   date: string;
+//   author: string;
+//   authorImage: string;
+//   views: number;
+//   comments: IComment[];
+// }
+// export interface IComment {
+//   id: number;
+//   author: string;
+//   authorImage: string;
+//   content: string;
+//   date: string;
+// }
 export interface IServices {
   id: number;
   image: string;
@@ -114,4 +114,48 @@ export interface Appointment {
   appointment_date: string;
   start_time: string;
   notes: string;
+}
+export interface IComment {
+  id: number;
+  article_id: number;
+  user_id: number | null;
+  parent_id: number | null;
+  guest_name: string;
+  guest_email: string | null;
+  body: string;
+  is_approved: boolean;
+  created_at: string;
+  updated_at: string;
+}
+export interface IArticle {
+  id: number;
+  title: string;
+  slug: string;
+  body: string;
+  excerpt: string;
+  featured_image: string;
+  is_published: boolean;
+  is_favorite: boolean;
+  created_at: string;
+  updated_at: string;
+  comment_count: number;
+  comments: IComment[];
+}
+
+export interface IAddComment {
+  id: number;
+  article_id: number;
+  guest_name: string;
+  body: string;
+  parent_id: number | null;
+  guest_email: string | null;
+  user_id: number | null;
+  is_approved: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ICreateCommentResponse {
+  message: string;
+  comment: IComment;
 }

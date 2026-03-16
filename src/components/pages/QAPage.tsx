@@ -6,7 +6,7 @@ interface IProps {}
 const QAPage: React.FC<IProps> = () => {
   return (
     <div className="" id="qa">
-      <div className="row">
+      <div className="row mt-10">
             <div className="col-1">
                 <FAQAccordion faqs={faqs} />
             </div>
