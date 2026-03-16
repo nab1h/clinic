@@ -1,11 +1,28 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { services } from "../../data";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import type { IService } from "../../interfaces";
 
 const ServiceSinglePage = () => {
   const { id } = useParams<{ id: string }>();
+  const { clinicSlug } = useParams<{ clinicSlug: string }>();
   const navigate = useNavigate();
-  const service = services.find((s) => s.id.toString() === id);
+  const baseURL = import.meta.env.VITE_API_URL;
 
+  const { data: services, isLoading, error } = useQuery<IService[]>({
+    queryKey: ["services", clinicSlug],
+    queryFn: async () => {
+      const url = `${baseURL}/api/${clinicSlug}/services`;
+      const res = await axios.get<IService[]>(url);
+      return res.data;
+    },
+    enabled: !!clinicSlug,
+  });
+
+  const service = services?.find((s) => s.id.toString() === id);
+
+  if (isLoading) return <p style={{ textAlign: "center", marginTop: "100px" }}>جاري تحميل الخدمة...</p>;
+  if (error) return <p style={{ textAlign: "center", marginTop: "100px" }}>حدث خطأ أثناء تحميل الخدمة</p>;
   if (!service) return <p style={{ textAlign: "center", marginTop: "100px" }}>الخدمة غير موجودة</p>;
 
   return (
@@ -60,7 +77,7 @@ const ServiceSinglePage = () => {
               {service.name}
             </h1>
             <p style={{ color:"#838C98", fontSize:"16px", maxWidth:"600px", lineHeight:1.8, margin:0 }}>
-              {typeof service.details === "string" ? service.details.slice(0, 120) + "..." : ""}
+              {typeof service.description === "string" ? service.description.slice(0, 120) + "..." : ""}
             </p>
           </div>
 
@@ -76,8 +93,19 @@ const ServiceSinglePage = () => {
           boxShadow:"0 20px 60px rgba(29,42,77,0.18)",
           border:"3px solid #FFFFFF",
         }}>
-          <img src={service.image} alt={service.name}
-            style={{ width:"100%", height:"380px", objectFit:"cover", display:"block" }} />
+          {service.image ? (
+            <img src={`${baseURL}/storage/${service.image}`} alt={service.name}
+              style={{ width:"100%", height:"380px", objectFit:"cover", display:"block" }} />
+          ) : (
+            <div style={{
+              width:"100%", height:"380px",
+              background:"linear-gradient(135deg, #13C5CC 0%, #1D2A4D 100%)",
+              display:"flex", alignItems:"center", justifyContent:"center",
+              color:"white", fontSize:"48px"
+            }}>
+              {service.name.charAt(0)}
+            </div>
+          )}
         </div>
 
         <div style={{ display:"grid", gap:"28px", marginTop:"40px", marginBottom:"0px" }}>
@@ -89,7 +117,7 @@ const ServiceSinglePage = () => {
               <h2 style={{ margin:0, fontSize:"22px", fontWeight:800, color:"#1D2A4D" }}>عن الخدمة</h2>
             </div>
             <p style={{ color:"#838C98", fontSize:"16px", lineHeight:2, margin:0, whiteSpace:"pre-line" }}>
-              {service.details}
+              {service.description}
             </p>
           </div>
 
@@ -149,7 +177,7 @@ const ServiceSinglePage = () => {
               تواصل معنا الآن وسيقوم فريقنا المتخصص بمساعدتك وتقديم أفضل الحلول
             </p>
             <button
-              onClick={() => navigate("/booking")}
+              onClick={() => navigate(`/${clinicSlug}/booking`)}
               style={{
                 background:"#13C5CC", color:"#FFFFFF", border:"none",
                 padding:"14px 40px", borderRadius:"50px", fontSize:"16px", fontWeight:700,
@@ -165,7 +193,7 @@ const ServiceSinglePage = () => {
                 e.currentTarget.style.transform = "translateY(0)";
               }}
             >
-              إحجز معادك
+              احجز موعدك
             </button>
           </div>
 

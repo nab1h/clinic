@@ -48,10 +48,10 @@ const ServicePage = () => {
             <CardService
               key={service.id}
               onClick={() => {
-                navigate(`/service/${service.id}`);
+                navigate(`/${clinicSlug}/service/${service.id}`);
               }}
               id={service.id}
-              image={`${baseURL}/storage/${service.image}`}
+              image={service.image ? `${baseURL}/storage/${service.image}` : "https://via.placeholder.com/400x300/13C5CC/ffffff?text=Service"}
               address={service.name}
               desc={service.description}
             />
