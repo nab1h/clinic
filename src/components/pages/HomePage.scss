@@ -1,10 +1,28 @@
 .hero-section {
+  position: relative;
   background-image: url('/img/hero.jpg');
   background-size: cover;
   background-position: center;
   height: 300px;
   margin-top: 70px;
-  @media (max-width: 768px) {
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 77, 80, 0.6);
+  z-index: 1;
+}
+
+.hero-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
     background-position: left center;
   }
 }

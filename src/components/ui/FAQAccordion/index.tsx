@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import AddressPage from "../AddressPage";
+import { useParams } from "react-router-dom";
+import type { FAQ } from "../../../interfaces";
+import { getFAQs } from "../../../api/faq";
+import LoadingScreen from "../../LoadingScreen";
 
 interface IFAQ {
   id: number;
@@ -8,17 +12,30 @@ interface IFAQ {
   answer: string;
 }
 
-interface IProps {
-  faqs: IFAQ[];
-}
-
-const FAQAccordion = ({ faqs }: IProps) => {
+const FAQAccordion = () => {
   const [openId, setOpenId] = useState<number | null>(null);
 
   const toggle = (id: number) => {
     setOpenId(openId === id ? null : id);
   };
 
+
+
+  const { clinicSlug } = useParams<{ clinicSlug: string }>();
+  const [faqs, setFaqs] = useState<FAQ[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!clinicSlug) return;
+
+    setLoading(true);
+    getFAQs(clinicSlug)
+      .then((data) => setFaqs(data))
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, [clinicSlug]);
+
+  if (loading) return <LoadingScreen />;
   return (
     <div className="max-w-2xl mx-auto px-4 py-10">
       
@@ -26,7 +43,7 @@ const FAQAccordion = ({ faqs }: IProps) => {
 
       {/* Accordion Items */}
       <div className="flex flex-col gap-3">
-        {faqs.map((faq) => {
+      {faqs.filter(f => f.is_active).map((faq) => {
           const isOpen = openId === faq.id;
 
           return (

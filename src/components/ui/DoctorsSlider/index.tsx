@@ -1,35 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
-import { sampleDoctors } from "../../../data";
 import type { Doctor } from "../../../interfaces";
 import AddressPage from "../AddressPage";
+import { useParams } from "react-router-dom";
+import LoadingScreen from "../../LoadingScreen";
+import { getDoctors } from "../../../api/doctors";
 
 
-
-const DoctorCard: React.FC<{ doctor: Doctor }> = ({ doctor }) => {
+interface IProps{
+  name: string;
+  specialty: string;
+  description: string;
+  image: string;
+}
+const DoctorCard: React.FC<IProps > = ({ name, specialty , description , image }) => {
   return (
     <div className="doctor-card">
       <div className="card-image-wrapper">
-        <img src={doctor.image} alt={doctor.name} className="card-image" />
+        <img src={image} alt={name} className="card-image" />
       </div>
       <div className="card-content">
-        <h3 className="doctor-name">{doctor.name}</h3>
-        <p className="doctor-specialty">{doctor.specialty}</p>
-        <p className="doctor-desc">{doctor.description}</p>
+        <h3 className="doctor-name">{name}</h3>
+        <p className="doctor-specialty">{specialty}</p>
+        <p className="doctor-desc">{description}</p>
         <div className="social-icons">
-          <a href={doctor.social.twitter} className="social-btn twitter" aria-label="twitter">
+          <a href={""} className="social-btn twitter" aria-label="twitter">
             <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.626L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
             </svg>
           </a>
-          <a href={doctor.social.facebook} className="social-btn facebook" aria-label="facebook">
+          <a href={""} className="social-btn facebook" aria-label="facebook">
             <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
               <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
             </svg>
           </a>
-          <a href={doctor.social.linkedin} className="social-btn linkedin" aria-label="linkedin">
+          <a href={""} className="social-btn linkedin" aria-label="linkedin">
             <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
             </svg>
@@ -42,6 +49,21 @@ const DoctorCard: React.FC<{ doctor: Doctor }> = ({ doctor }) => {
 
 // ======= المكوّن الرئيسي للسلايدر =======
 const DoctorsSlider: React.FC = () => {
+  const { clinicSlug } = useParams<{ clinicSlug: string }>();
+  const [doctors, setDoctors] = useState<Doctor[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!clinicSlug) return;
+
+    getDoctors(clinicSlug)
+      .then(setDoctors)
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, [clinicSlug]);
+
+  if (loading) return <LoadingScreen />;
+  const baseURL = import.meta.env.VITE_API_URL;
   return (
     <section className="doctors-section overflow-hidden" dir="rtl">
       <AddressPage address={"فريق طبي"} title={"متخصصون"} />
@@ -60,9 +82,9 @@ const DoctorsSlider: React.FC = () => {
         }}
         className="doctors-swiper"
       >
-        {sampleDoctors.map((doctor: Doctor) => (
+        {doctors.map((doctor: Doctor) => (
           <SwiperSlide key={doctor.id}>
-            <DoctorCard doctor={doctor} />
+            <DoctorCard  name={doctor.name} image={doctor.image ? `${baseURL}/storage/${doctor.image}` : "/default-doctor.png"} description={doctor.description} specialty={doctor.specialty}/>
           </SwiperSlide>
         ))}
       </Swiper>

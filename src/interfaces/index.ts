@@ -149,3 +149,13 @@ export interface SocialLink {
   created_at: string;
   updated_at: string;
 }
+export interface FAQ {
+  id: number;
+  clinic_id: number;
+  question: string;
+  answer: string;
+  order: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}

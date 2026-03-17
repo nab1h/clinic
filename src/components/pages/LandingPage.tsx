@@ -4,6 +4,7 @@ import ServicePage from "./ServicePage";
 import DoctorPage from "./DoctorPage";
 import CirclePage from "./CirclePage";
 import QAPage from "./QAPage";
+import TestimonialPage from "./TestimonialPage";
 
 const LandingPage = () => {
   return (
@@ -14,6 +15,7 @@ const LandingPage = () => {
       <DoctorPage />
       <CirclePage />
       <QAPage />
+      <TestimonialPage />
     </>
   );
 };

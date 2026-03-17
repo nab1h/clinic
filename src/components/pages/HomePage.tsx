@@ -38,7 +38,7 @@ const HomePage: React.FC<IProps> = () => {
   if (loading) return <LoadingScreen />;
   return (
     <div
-      className="hero-section min-h-screen -mx-16 px-8 md:px-16 flex items-center"
+      className="hero-section min-h-screen -mx-16 px-16 md:px-16 flex items-center"
       id="home"
     >
       <div className="grid grid-cols-1 md:grid-cols-9 items-center w-full">
