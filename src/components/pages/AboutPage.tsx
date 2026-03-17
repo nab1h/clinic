@@ -6,6 +6,7 @@ import Content from "../ui/content/Content";
 import type { Clinic } from "../../interfaces";
 import { useEffect, useState } from "react";
 import { getClinicAll } from "../../api/settings";
+import LoadingScreen from "../LoadingScreen";
 
 const AboutPage = () => {
   const { clinicSlug } = useParams<{ clinicSlug: string }>();
@@ -25,7 +26,7 @@ const AboutPage = () => {
       .finally(() => setLoading(false));
   }, [clinicSlug]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingScreen />;
 
   const features = [
     {

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import type { Clinic , SocialLink } from "../../interfaces";
 import axios from "axios";
 import { getSocialLinks } from "../../api/links";
+import LoadingScreen from "../LoadingScreen";
 
 interface ILayoutProps {
     children: React.ReactNode;
@@ -43,7 +44,7 @@ const Layout = ({ children }: ILayoutProps)=>{
     }, [clinicSlug]);
     
     const whatsappLink = links.find((link) => link.type === "whatsapp");
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <LoadingScreen />;
     return(
         <div>
 
