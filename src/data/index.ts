@@ -305,7 +305,7 @@ export const faqs = [
       "يتوفر لدينا خط طوارئ على مدار الساعة للحالات الحرجة، كما يوجد طاقم طبي مدرب للتعامل مع الطوارئ داخل العيادة فور وصول المريض.",
   },
 ];
-export const links = [
+export const navlinks = [
   { id: 1, label: "الرئيسية", href: "" },
   { id: 2, label: "من نحن", href: "about" },
   { id: 3, label: "خدماتنا", href: "services" },

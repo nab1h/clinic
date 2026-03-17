@@ -1,19 +1,21 @@
 import { useParams } from "react-router-dom";
 import ContactButtons from "../ui/ContactButtons";
-
 import Navbar from "../ui/Navbar";
 import Footer from "./Footer";
 import { useEffect, useState } from "react";
-import type { Clinic } from "../../interfaces";
+import type { Clinic , SocialLink } from "../../interfaces";
 import axios from "axios";
+import { getSocialLinks } from "../../api/links";
+
 interface ILayoutProps {
     children: React.ReactNode;
 }
 const Layout = ({ children }: ILayoutProps)=>{
     const baseURL = import.meta.env.VITE_API_URL;
-    const {clinicSlug} = useParams<{clinicSlug: string}>()
+    const {clinicSlug} = useParams<{clinicSlug: string}>();
     const [loading, setLoading] = useState(true);
     const [content, setContent] = useState<Clinic>();
+    const [links, setLinks] = useState<SocialLink[]>([]);
     const url = clinicSlug ? `${baseURL}/api/${clinicSlug}/settings` : null ;
     useEffect(()=>{
       if (!url) {
@@ -34,6 +36,13 @@ const Layout = ({ children }: ILayoutProps)=>{
       fetchData();
       console.log(content)
     },[url, clinicSlug])
+
+    useEffect(() => {
+      if (!clinicSlug) return;
+      getSocialLinks(clinicSlug).then(setLinks);
+    }, [clinicSlug]);
+    
+    const whatsappLink = links.find((link) => link.type === "whatsapp");
     if (loading) return <p>Loading...</p>;
     return(
         <div>
@@ -42,7 +51,7 @@ const Layout = ({ children }: ILayoutProps)=>{
             <main className="mx-auto px-8 pt-1 mt-0 overflow-hidden">
                 {children}
             </main>
-            <ContactButtons whatsapp={content?.phone} number={content?.phone}/>
+            <ContactButtons whatsapp={whatsappLink?.url} number={content?.phone}/>
             <Footer address={content?.address} emailAddress={content?.email} phone={content?.phone}/>
         </div>
     );

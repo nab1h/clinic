@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import type { Clinic, ClinicSettings } from "../../interfaces";
+import type { Clinic } from "../../interfaces";
 import Button from "../ui/Button";
 import Content from "../ui/content/Content";
 import "./HomePage.scss";
@@ -14,6 +14,7 @@ const HomePage: React.FC<IProps> = () => {
   const [loading, setLoading] = useState(true);
   const [content, setContent] = useState<Clinic>();
   const url = clinicSlug ? `${baseURL}/api/${clinicSlug}/settings` : null ;
+  
   useEffect(()=>{
     if (!url) {
       setLoading(false);

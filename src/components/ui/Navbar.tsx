@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { links } from "../../data";
+import { navlinks } from "../../data";
 import { NavHashLink } from "react-router-hash-link";
 import { useParams } from "react-router-dom";
 interface IProps {
@@ -26,7 +26,7 @@ const Navbar: React.FC<IProps> = ({ logo, clinicName = "عيادتنا" }) => {
           </span>
         </div>
         <ul className="hidden md:flex items-center gap-6">
-          {links.map((link) => (
+          {navlinks.map((link) => (
             <li key={link.label}>
               <NavHashLink
                 smooth
@@ -91,7 +91,7 @@ const Navbar: React.FC<IProps> = ({ logo, clinicName = "عيادتنا" }) => {
       {isOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 px-4 pb-4">
           <ul className="flex flex-col gap-3 mt-3">
-            {links.map((link) => (
+            {navlinks.map((link) => (
               <li key={link.label}>
                 <NavHashLink
             smooth
@@ -111,7 +111,7 @@ const Navbar: React.FC<IProps> = ({ logo, clinicName = "عيادتنا" }) => {
             ))}
           </ul>
           <a
-            href="/booking"
+            href={`/${clinicSlug}/booking`}
             className="mt-4 block text-center bg-[var(--color-primary)] text-white text-sm font-bold px-5 py-2 rounded-full"
           >
             احجز موعد
