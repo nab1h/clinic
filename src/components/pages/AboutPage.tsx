@@ -1,19 +1,60 @@
-import { MdEmergency } from "react-icons/md";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { FaUserMd, FaClock, FaAward, FaHeartbeat } from "react-icons/fa";
 import CircleIcon from "../ui/CircleIcon";
 import Content from "../ui/content/Content";
+import type { Clinic } from "../../interfaces";
+import { getClinicData } from "../../api/settings";
+const AboutPage = () => {
+  const { clinicSlug } = useParams<{ clinicSlug: string }>();
+  const baseURL = import.meta.env.VITE_API_URL;
 
-interface IProps {}
+  const { data: clinic, isLoading, error } = useQuery<Clinic | null>({
+    queryKey: ["clinic", clinicSlug],
+    queryFn: () => getClinicData(clinicSlug || "default"),
+    enabled: !!clinicSlug,
+  });
 
-const AboutPage: React.FC<IProps> = () => {
+  const settings = clinic?.settings;
+
+  if (isLoading) return <div className="my-20 text-center">جاري التحميل...</div>;
+  if (error) {
+    console.error("Error fetching clinic data:", error);
+    return <div className="my-20 text-center text-red-500">حدث خطأ أثناء تحميل البيانات</div>;
+  }
+
+  const features = [
+    {
+      icon: FaUserMd,
+      address: "أطباء متخصصون",
+      title: "فريق طبي ذو خبرة وكفاءة عالية في جميع التخصصات"
+    },
+    {
+      icon: FaClock,
+      address: "خدمة 24 ساعة",
+      title: "نستقبل المرضى على مدار الساعة طوال أيام الأسبوع"
+    },
+    {
+      icon: FaAward,
+      address: "جودة عالية",
+      title: "نلتزم بأعلى معايير الجودة في تقديم الخدمات الطبية"
+    },
+    {
+      icon: FaHeartbeat,
+      address: "رعاية شخصية",
+      title: "نقدم رعاية فردية لكل مريض لضمان الراحة والشفاء"
+    }
+  ];
+
   return (
-    <div className="min-height-[400px] my-20" id="about">
+    <div className="min-h-[400px] my-20" id="about">
       <div className="grid grid-cols-1 md:grid-cols-9 items-center gap-10">
         <div
           className="w-full md:col-span-3 rounded-xl overflow-hidden"
           style={{ height: "400px" }}
         >
           <img
-            src="/img/about.jpg"
+            src={`${baseURL}/storage/${clinic?.logo}`}
             alt="about"
             className="w-full h-full object-cover"
           />
@@ -21,17 +62,21 @@ const AboutPage: React.FC<IProps> = () => {
         <div className="md:col-span-6 flex flex-col items-end text-right gap-6 w-full">
           <Content
             name="حولنا"
-            content="بسم الله الرحمن الرحيم الحمدلله رب العالمين الرحمن الرحيم مالك يوم الدين"
+            content={settings?.content || "عيادة متخصصة تقديم أفضل الخدمات الطبية"}
             className="w-full text-right"
             style={{ color: "var(--color-black)" }}
-            description="بسم الله الرحمن الرحيم مالك يوم الدين اياك نعبد واياك نستعين"
+            description={settings?.footer_text || "نسعى دائماً لتحقيق رضاكم وضمان صحتكم"}
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-4 place-items-center gap-6 w-full">
-            <CircleIcon icon={MdEmergency} address="طوارئ" title="خدمة طوارئ 24 ساعة" />
-            <CircleIcon icon={MdEmergency} address="طوارئ" title="خدمة طوارئ 24 ساعة" />
-            <CircleIcon icon={MdEmergency} address="طوارئ" title="خدمة طوارئ 24 ساعة" />
-            <CircleIcon icon={MdEmergency} address="طوارئ" title="خدمة طوارئ 24 ساعة" />
+            {features.map((feature, index) => (
+              <CircleIcon
+                key={index}
+                icon={feature.icon}
+                address={feature.address}
+                title={feature.title}
+              />
+            ))}
           </div>
         </div>
 

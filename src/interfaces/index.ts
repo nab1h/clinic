@@ -44,31 +44,12 @@ export interface IArticleCardProps {
     comments?: number;
     authetImage?: string;
 }
-// export interface IArticle {
-//   id: number;
-//   title: string;
-//   description: string;
-//   image: string;
-//   date: string;
-//   author: string;
-//   authorImage: string;
-//   views: number;
-//   comments: IComment[];
-// }
-// export interface IComment {
-//   id: number;
-//   author: string;
-//   authorImage: string;
-//   content: string;
-//   date: string;
-// }
 export interface IServices {
   id: number;
   image: string;
   name: string;
   details: string;
 }
-
 export interface IService {
   id: number;
   name: string;
@@ -90,8 +71,8 @@ export interface ClinicSettings {
   footer_text: string;
   brand_color: string;
   primary_color: string;
+  logo?: string;
 }
-
 export interface Clinic {
   name: string;
   email: string;
@@ -141,7 +122,6 @@ export interface IArticle {
   comment_count: number;
   comments: IComment[];
 }
-
 export interface IAddComment {
   id: number;
   article_id: number;
@@ -154,8 +134,18 @@ export interface IAddComment {
   created_at: string;
   updated_at: string;
 }
-
 export interface ICreateCommentResponse {
   message: string;
   comment: IComment;
+}
+export interface SocialLink {
+  id: number;
+  clinic_id: number;
+  type: string;
+  label: string | null;
+  url: string;
+  order: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
 }

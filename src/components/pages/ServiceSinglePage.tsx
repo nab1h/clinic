@@ -1,7 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import type { IService } from "../../interfaces";
+import { getServices } from "../../api/services";
+import { formatDate } from "../../until";
 
 const ServiceSinglePage = () => {
   const { id } = useParams<{ id: string }>();
@@ -11,11 +12,7 @@ const ServiceSinglePage = () => {
 
   const { data: services, isLoading, error } = useQuery<IService[]>({
     queryKey: ["services", clinicSlug],
-    queryFn: async () => {
-      const url = `${baseURL}/api/${clinicSlug}/services`;
-      const res = await axios.get<IService[]>(url);
-      return res.data;
-    },
+    queryFn: () => getServices(clinicSlug || "default"),
     enabled: !!clinicSlug,
   });
 
