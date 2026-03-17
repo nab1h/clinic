@@ -1,18 +1,29 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
-import type { ITestimonial } from "../../../interfaces";
 
+// ✅ Interface متوافقة مع بيانات الـ API
+interface IApiTestimonial {
+  id: number;
+  clinic_id: number;
+  name: string;
+  job_title: string;
+  message: string;
+  stars: number;
+  is_approved: boolean;
+  created_at: string;
+  updated_at: string;
+}
 
 interface IProps {
-  testimonials: ITestimonial[];
+  testimonials: IApiTestimonial[];
 }
 
 const TestimonialCard = ({ testimonials }: IProps) => {
   return (
     <div className="w-full mx-auto py-16 px-6 -mx-16">
       <Swiper
-      className="!flex !flex-row"
+        className="!flex !flex-row"
         modules={[Autoplay, Pagination]}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
@@ -23,10 +34,11 @@ const TestimonialCard = ({ testimonials }: IProps) => {
         {testimonials.map((item) => (
           <SwiperSlide key={item.id}>
             <div className="flex flex-col items-center justify-center pb-12">
-              {/* صورة العميل */}
+
+              {/* صورة العميل — Avatar تلقائي من الاسم */}
               <div className="relative mb-4">
                 <img
-                  src={item.image}
+                  src={`https://ui-avatars.com/api/?name=${encodeURIComponent(item.name)}&background=00bcd4&color=fff&size=112`}
                   alt={item.name}
                   className="w-28 h-28 rounded-full object-cover border-4 border-white shadow-lg"
                 />
@@ -43,9 +55,21 @@ const TestimonialCard = ({ testimonials }: IProps) => {
                 </div>
               </div>
 
+              {/* النجوم */}
+              <div className="flex gap-1 mt-6 mb-2">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <span
+                    key={star}
+                    className={`text-xl ${star <= item.stars ? "text-amber-400" : "text-gray-200"}`}
+                  >
+                    ★
+                  </span>
+                ))}
+              </div>
+
               {/* نص الرأي */}
-              <p className="text-gray-500 text-center leading-relaxed text-base mt-8 mb-6 max-w-xl">
-                {item.review}
+              <p className="text-gray-500 text-center leading-relaxed text-base mt-2 mb-6 max-w-xl">
+                {item.message} {/* ✅ كان item.review */}
               </p>
 
               {/* الخط الفاصل */}
@@ -53,7 +77,8 @@ const TestimonialCard = ({ testimonials }: IProps) => {
 
               {/* الاسم والمهنة */}
               <h4 className="font-bold text-gray-800 text-lg">{item.name}</h4>
-              <p className="text-[#00bcd4] text-sm mt-1">{item.profession}</p>
+              <p className="text-[#00bcd4] text-sm mt-1">{item.job_title}</p> {/* ✅ كان item.profession */}
+
             </div>
           </SwiperSlide>
         ))}
