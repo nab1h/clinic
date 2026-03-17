@@ -1,35 +1,49 @@
 import { useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 interface ITestimonialForm {
   name: string;
-  profession: string;
-  review: string;
-  rating: number;
+  job_title: string;
+  message: string;
+  stars: number;
 }
 
-const TestimonialForm: React.FC = () => {
+const TestimonialForm: React.FC= () => {
+  const { clinicSlug } = useParams<{ clinicSlug: string }>();
   const [form, setForm] = useState<ITestimonialForm>({
     name: "",
-    profession: "",
-    review: "",
-    rating: 5,
+    job_title: "",
+    message: "",
+    stars: 5,
   });
-  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = () => {
-    if (!form.name || !form.review) return;
-    console.log("New testimonial:", form);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setForm({ name: "", profession: "", review: "", rating: 5 });
-    }, 3000);
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  // ✅ Fix 1: Removed FormEvent parameter — no longer needed with onClick
+  const handleSubmit = async () => {
+    if (!form.name || !form.message) return;
+
+    setLoading(true);
+    try {
+      const url = `${import.meta.env.VITE_API_URL}/api/${clinicSlug}/customer-reviews`;
+      const res = await axios.post(url, form);
+      console.log("تم الإرسال بنجاح:", res.data);
+      setSubmitted(true);
+      setForm({ name: "", job_title: "", message: "", stars: 5 });
+      setTimeout(() => setSubmitted(false), 3000);
+    } catch (err) {
+      console.error("خطأ في إرسال التقييم:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div
       dir="rtl"
-      className="mt-6 max-w-xl mx-auto "
+      className="mt-6 max-w-xl mx-auto"
       style={{ fontFamily: "'Cairo', sans-serif" }}
     >
       <link
@@ -61,10 +75,11 @@ const TestimonialForm: React.FC = () => {
               {[1, 2, 3, 4, 5].map((star) => (
                 <button
                   key={star}
-                  onClick={() => setForm({ ...form, rating: star })}
+                  type="button"
+                  onClick={() => setForm({ ...form, stars: star })}
                   className="text-3xl transition-transform hover:scale-110"
                 >
-                  <span className={star <= form.rating ? "text-amber-400" : "text-gray-200"}>
+                  <span className={star <= form.stars ? "text-amber-400" : "text-gray-200"}>
                     ★
                   </span>
                 </button>
@@ -94,8 +109,8 @@ const TestimonialForm: React.FC = () => {
             <input
               type="text"
               placeholder="مهندس، طبيب، ..."
-              value={form.profession}
-              onChange={(e) => setForm({ ...form, profession: e.target.value })}
+              value={form.job_title}
+              onChange={(e) => setForm({ ...form, job_title: e.target.value })}
               className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent transition"
             />
           </div>
@@ -108,22 +123,22 @@ const TestimonialForm: React.FC = () => {
             <textarea
               rows={4}
               placeholder="شاركنا تجربتك..."
-              value={form.review}
-              onChange={(e) => setForm({ ...form, review: e.target.value })}
+              value={form.message}
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
               className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent transition resize-none"
             />
             <p className="text-xs text-gray-400 mt-1 text-left">
-              {form.review.length} / 300
+              {form.message.length} / 300
             </p>
           </div>
 
-          {/* Submit */}
           <button
+            type="button"
             onClick={handleSubmit}
-            disabled={!form.name || !form.review}
-            className="w-full bg-[var(--color-primary)] hover:bg-[var(--color-primary)] disabled:bg-gray-200 disabled:text-gray-400 text-white font-bold py-3 rounded-xl transition-all duration-200 text-sm"
+            disabled={!form.name || !form.message || loading}
+            className="cursor-pointer w-full bg-[var(--color-primary)] hover:opacity-90 disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed text-white font-bold py-3 rounded-xl transition-all duration-200 text-sm"
           >
-            إرسال الرأي
+            {loading ? "جاري الإرسال..." : "إرسال الرأي"}
           </button>
         </div>
       )}
