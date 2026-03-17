@@ -4,7 +4,8 @@ import Button from "../ui/Button";
 import Content from "../ui/content/Content";
 import { getSocialLinks } from "../../api/links";
 import { useParams } from "react-router-dom";
-import type { SocialLink } from "../../interfaces";
+import type { Clinic, SocialLink } from "../../interfaces";
+import { getClinicAll } from "../../api/settings";
 interface IProps {}
 const BookingPage: React.FC<IProps> = () => {
   const { clinicSlug } = useParams<{ clinicSlug: string }>();
@@ -14,6 +15,19 @@ const BookingPage: React.FC<IProps> = () => {
     if (!clinicSlug) return;
     getSocialLinks(clinicSlug).then(setLinks);
   }, [clinicSlug]);
+
+  const [data, setData] = useState<Clinic | null>(null);
+
+  useEffect(() => {
+    if (!clinicSlug) {
+      setLoading(false);
+      return;
+    }
+    getClinicAll(clinicSlug)
+      .then(setData)
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, [clinicSlug]);
   return (
     <div
       className="bg-[var(--color-primary)] min-h-screen -mx-16 px-8 px-16 py-16 mt-15"
@@ -22,14 +36,14 @@ const BookingPage: React.FC<IProps> = () => {
       <div className="grid grid-cols-1 md:grid-cols-10 items-center gap-10 h-full">
         <div className="md:col-span-5 flex flex-col items-start text-right">
           <Content
-            name="مرحبا بك في الامانة"
-            content="بسم الله الرحمن الرحيم الحمدلله رب العالمين الرحمن الرحيم مالك يوم الدين"
+            name={`مرحبا بك في ${data?.name}`}
+            content={data?.settings?.message}
             className="w-full text-right"
             colorTitle="white"
             style={{ color: "var(--color-black)" }}
           />
           <div className="flex flex-wrap gap-4 mt-10">
-            <a href="#">
+            <a href={`tel:+${data?.phone}`}>
               <Button
                 variant="primary"
                 className="font-bold bg-[var(--color-black)] text-white"
@@ -63,3 +77,7 @@ function setLinks(
 ): SocialLink[] | PromiseLike<SocialLink[]> {
   throw new Error("Function not implemented.");
 }
+function setLoading(arg0: boolean) {
+  throw new Error("Function not implemented.");
+}
+

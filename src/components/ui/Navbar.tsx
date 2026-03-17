@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { navlinks } from "../../data";
 import { NavHashLink } from "react-router-hash-link";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 interface IProps {
   logo: string;
   clinicName?: string;
@@ -9,13 +9,14 @@ interface IProps {
 const Navbar: React.FC<IProps> = ({ logo, clinicName = "عيادتنا" }) => {
   const [isOpen, setIsOpen] = useState(false);
   const {clinicSlug} = useParams<{clinicSlug: string}>();
+  const navigate = useNavigate();
   return (
     <nav
       dir="rtl"
       className="bg-white shadow-md fixed top-0 left-0 right-0 z-50"
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 cursor-pointer" onClick={()=>navigate(`/${clinicSlug}`)} >
           <img
             src={logo}
             alt="logo"

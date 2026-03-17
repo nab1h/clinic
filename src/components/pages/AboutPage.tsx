@@ -1,27 +1,31 @@
 import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+
 import { FaUserMd, FaClock, FaAward, FaHeartbeat } from "react-icons/fa";
 import CircleIcon from "../ui/CircleIcon";
 import Content from "../ui/content/Content";
 import type { Clinic } from "../../interfaces";
-import { getClinicData } from "../../api/settings";
+import { useEffect, useState } from "react";
+import { getClinicAll } from "../../api/settings";
+
 const AboutPage = () => {
   const { clinicSlug } = useParams<{ clinicSlug: string }>();
   const baseURL = import.meta.env.VITE_API_URL;
+  const [loading, setLoading] = useState(true);
 
-  const { data: clinic, isLoading, error } = useQuery<Clinic | null>({
-    queryKey: ["clinic", clinicSlug],
-    queryFn: () => getClinicData(clinicSlug || "default"),
-    enabled: !!clinicSlug,
-  });
+  const [data, setData] = useState<Clinic | null>(null);
 
-  const settings = clinic?.settings;
+  useEffect(() => {
+    if (!clinicSlug) {
+      setLoading(false);
+      return;
+    }
+    getClinicAll(clinicSlug)
+      .then(setData)
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, [clinicSlug]);
 
-  if (isLoading) return <div className="my-20 text-center">جاري التحميل...</div>;
-  if (error) {
-    console.error("Error fetching clinic data:", error);
-    return <div className="my-20 text-center text-red-500">حدث خطأ أثناء تحميل البيانات</div>;
-  }
+  if (loading) return <p>Loading...</p>;
 
   const features = [
     {
@@ -54,7 +58,7 @@ const AboutPage = () => {
           style={{ height: "400px" }}
         >
           <img
-            src={`${baseURL}/storage/${clinic?.logo}`}
+            src={`${baseURL}/storage/${data?.logo}`}
             alt="about"
             className="w-full h-full object-cover"
           />
@@ -62,10 +66,10 @@ const AboutPage = () => {
         <div className="md:col-span-6 flex flex-col items-end text-right gap-6 w-full">
           <Content
             name="حولنا"
-            content={settings?.content || "عيادة متخصصة تقديم أفضل الخدمات الطبية"}
+            content={data?.settings?.content || "عيادة متخصصة تقديم أفضل الخدمات الطبية"}
             className="w-full text-right"
             style={{ color: "var(--color-black)" }}
-            description={settings?.footer_text || "نسعى دائماً لتحقيق رضاكم وضمان صحتكم"}
+            description={data?.settings?.footer_text || "نسعى دائماً لتحقيق رضاكم وضمان صحتكم"}
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-4 place-items-center gap-6 w-full">

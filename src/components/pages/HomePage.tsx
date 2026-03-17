@@ -10,33 +10,36 @@ interface IProps {}
 
 const HomePage: React.FC<IProps> = () => {
   const baseURL = import.meta.env.VITE_API_URL;
-  const {clinicSlug} = useParams<{clinicSlug: string}>()
+  const { clinicSlug } = useParams<{ clinicSlug: string }>();
   const [loading, setLoading] = useState(true);
   const [content, setContent] = useState<Clinic>();
-  const url = clinicSlug ? `${baseURL}/api/${clinicSlug}/settings` : null ;
-  
-  useEffect(()=>{
+  const url = clinicSlug ? `${baseURL}/api/${clinicSlug}/settings` : null;
+
+  useEffect(() => {
     if (!url) {
       setLoading(false);
       return;
     }
     setLoading(true);
-    const fetchData = async()=>{
-      try{
+    const fetchData = async () => {
+      try {
         const res = await axios.get<Clinic>(url);
         setContent(res.data);
-      }catch(error){
-        console.error("Error fetching clinic:",error);
-      }finally{
+      } catch (error) {
+        console.error("Error fetching clinic:", error);
+      } finally {
         setLoading(false);
       }
-    }
+    };
     fetchData();
-    console.log(content)
-  },[url, clinicSlug])
+    console.log(content);
+  }, [url, clinicSlug]);
   if (loading) return <p>Loading...</p>;
   return (
-    <div className="hero-section min-h-screen -mx-16 px-8 md:px-16 flex items-center" id="home">
+    <div
+      className="hero-section min-h-screen -mx-16 px-8 md:px-16 flex items-center"
+      id="home"
+    >
       <div className="grid grid-cols-1 md:grid-cols-9 items-center w-full">
         <div className="md:col-span-6 flex flex-col items-center text-right text-center">
           <Content
@@ -45,8 +48,16 @@ const HomePage: React.FC<IProps> = () => {
             className="w-full text-right text-center"
           />
           <div className="flex flex-wrap gap-4 mt-10">
-            <Button variant="primary" className="font-bold">احجز معادك</Button>
-            <Button variant="outline" className="font-bold">إتصل بنا</Button>
+            <a href={`/${clinicSlug}/booking`}>
+              <Button variant="primary" className="font-bold">
+                احجز معادك
+              </Button>
+            </a>
+            <a href={`/${clinicSlug}/contact`}>
+              <Button variant="outline" className="font-bold">
+                إتصل بنا
+              </Button>
+            </a>
           </div>
         </div>
         <div className="md:col-span-3 hidden md:block" />
