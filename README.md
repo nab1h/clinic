@@ -1,73 +1,254 @@
-# React + TypeScript + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🏥 نظام إدارة العيادات متعددة المستأجرين
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-19.2.0-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-blue)
+![Vite](https://img.shields.io/badge/Vite-7.3.1-purple)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.2.1-38bdf8)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+نظام متكامل لإدارة العيادات الطبية مع دعم عدة عيادات من خلال واجهة واحدة. يوفر تجربة مستخدم سلسة لحجز المواعيد وعرض الخدمات والمعلومات الطبية.
 
-## React Compiler
+[العرض المباشر](#) | [التوثيق](#) | [التقرير عن مشاكل](#)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+</div>
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📋 جدول المحتويات
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- [المميزات](#المميزات)
+- [التقنيات المستخدمة](#التقنيات-المستخدمة)
+- [التثبيت والتشغيل](#التثبيت-والتشغيل)
+- [هيكل المشروع](#هيكل-المشروع)
+- [المتغيرات البيئية](#المتغيرات-البيئية)
+- [التطوير](#التطوير)
+- [البناء](#البناء)
+- [المساهمة](#المساهمة)
+- [الترخيص](#الترخيص)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## ✨ المميزات
+
+### للمستخدمين
+- 🏠 **الصفحة الرئيسية** - عرض معلومات العيادة والخدمات الرئيسية
+- 📅 **نظام الحجز** - حجز المواعيد الإلكتروني بسهولة
+- 🩺 **الخدمات** - عرض كافة الخدمات الطبية المتوفرة
+- 👥 **الأطباء** - عرض معلومات الأطباء وتخصصاتهم
+- 💬 **المدونة** - المقالات والمحتوى الطبي
+- ❓ **الأسئلة الشائعة** - أجوبة عن الاستفسارات المتكررة
+- 📞 **صفحة التواصل** - معلومات الاتصال والخريطة
+- 🌟 **آراء العملاء** - شهادات ومراجعات العملاء
+
+### للمطورين
+- 🔗 **نظام متعدد المستأجرين** - دعم عدة عيادات عبر `clinicSlug`
+- 🎨 **تصميم متجاوب** - يعمل على جميع الأجهزة
+- 🎯 **نظام توجيه ديناميكي** - React Router مع دعم الهاش
+- 📱 **أزرار التواصل السريع** - واتساب، هاتف، وحجز
+- 🔍 **تتبع التحليلات** - دعم إضافة سكربتات التتبع
+- ⚡ **أداء عالي** - بناء مع Vite
+
+---
+
+## 🛠 التقنيات المستخدمة
+
+### الواجهة الأمامية
+
+| التقنية | الإصدار | الوصف |
+|---------|---------|-------|
+| **React** | 19.2.0 | مكتبة JavaScript لبناء واجهات المستخدم |
+| **TypeScript** | 5.9.3 | لغة برمجة مع أنواع ثابتة |
+| **Vite** | 7.3.1 | أداة بناء سريعة للتطبيقات الحديثة |
+| **TailwindCSS** | 4.2.1 | إطار عمل CSS للتطوير السريع |
+| **React Router** | 7.13.1 | نظام توجيه للتطبيقات المكون من صفحة واحدة |
+| **Axios** | 1.13.6 | مكتبة لإجراء طلبات HTTP |
+| **React Hook Form** | 7.71.1 | إدارة النماذج بشكل فعال |
+| **TanStack Query** | 5.90.21 | إدارة حالة البيانات والتخزين المؤقت |
+| **React Hot Toast** | 2.6.0 | إشعارات جميلة وسريعة |
+| **Swiper** | 12.1.2 | مكتبة الشرائح التفاعلية |
+| **React Spring** | 10.0.3 | رسوم متحركة سلسة |
+
+### الأدوات الأخرى
+
+- **ESLint** - للتحقق من جودة الكود
+- **PostCSS** - لمعالجة CSS
+- **Git** - للتحكم في الإصدارات
+
+---
+
+## 🚀 التثبيت والتشغيل
+
+### المتطلبات المسبقة
+
+- Node.js (الإصدار 18 أو أحدث)
+- npm أو yarn أو pnpm
+- حساب على GitHub (للمساهمة)
+
+### خطوات التثبيت
+
+1. **استنساخ المشروع**
+
+```bash
+git clone https://github.com/username/clinic-booking-system.git
+cd clinic-booking-system
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. **تثبيت الاعتماديات**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+# أو
+yarn install
+# أو
+pnpm install
 ```
+
+3. **إعداد المتغيرات البيئية**
+
+```bash
+cp .env.example .env
+```
+
+ثم قم بتحرير ملف `.env` وإضافة المتغيرات المطلوبة:
+
+```env
+VITE_API_URL=http://localhost:8000
+```
+
+4. **تشغيل خادم التطوير**
+
+```bash
+npm run dev
+# أو
+yarn dev
+# أو
+pnpm dev
+```
+
+سيكون التطبيق متاحاً على `http://localhost:5173`
+
+---
+
+## 📁 هيكل المشروع
+
+```
+clinic-booking-system/
+├── public/              # الملفات الثابتة
+├── src/
+│   ├── api/            # API calls and endpoints
+│   ├── assets/         # الصور والملفات الثابتة
+│   ├── components/     # المكونات القابلة لإعادة الاستخدام
+│   │   ├── pages/      # مكونات الصفحات (Layout, Footer, etc.)
+│   │   └── ui/         # مكونات الواجهة (Buttons, Cards, etc.)
+│   ├── data/           # البيانات الثابتة (navlinks, services, etc.)
+│   ├── interfaces/     # تعريفات TypeScript
+│   ├── styles/         # الملفات الأساسية للتنسيق
+│   ├── until/          # الأدوات المساعدة
+│   ├── App.tsx         # المكون الرئيسي للتطبيق
+│   └── main.tsx        # نقطة الدخول
+├── .env                # المتغيرات البيئية
+├── .gitignore          # الملفات المستثناة من Git
+├── index.html          # ملف HTML الرئيسي
+├── package.json        # معلومات المشروع والاعتماديات
+├── tailwind.config.js  # إعدادات TailwindCSS
+├── tsconfig.json       # إعدادات TypeScript
+├── vite.config.ts      # إعدادات Vite
+└── README.md           # ملف التوثيق
+```
+
+---
+
+## 🔧 المتغيرات البيئية
+
+| المتغير | الوصف | القيمة الافتراضية |
+|---------|-------|-------------------|
+| `VITE_API_URL` | رابط خادم الـ API | - |
+
+---
+
+## 📖 التطوير
+
+### الأوامر المتاحة
+
+```bash
+# تشغيل خادم التطوير
+npm run dev
+
+# بناء المشروع للإنتاج
+npm run build
+
+# معاينة المشروع بعد البناء
+npm run preview
+
+# فحص الكود باستخدام ESLint
+npm run lint
+```
+
+### إضافة صفحة جديدة
+
+1. أنشئ مكون الصفحة في `src/components/pages/`
+2. أضف المسار في `src/main.tsx`
+3. أضف الرابط في `src/data/index.ts` تحت `navlinks`
+
+### إضافة خدمة جديدة
+
+عدّل ملف `src/data/index.ts` وأضف خدمة جديدة إلى مصفوفة `services`.
+
+---
+
+## 🏗 البناء للإنتاج
+
+```bash
+npm run build
+```
+
+سيتم إنشاء الملفات في مجلد `dist/` جاهزة للنشر.
+
+---
+
+## 🤝 المساهمة
+
+نرحب بجميع المساهمات! إذا كنت ترغب في المساهمة:
+
+1. Fork المشروع
+2. أنشئ فرعًا جديدًا (`git checkout -b feature/AmazingFeature`)
+3. قم بتنفيذ التغييرات وارفعها (`git commit -m 'Add some AmazingFeature'`)
+4. ادفع الفرع (`git push origin feature/AmazingFeature`)
+5. افتح Pull Request
+
+---
+
+## 📝 ترخيص
+
+هذا المشروع مرخص بموجب [رخصة MIT](LICENSE)
+
+---
+
+## 👥 فريق التطوير
+
+- **المطور الرئيسي** - [اسمك](https://github.com/username)
+
+---
+
+## 🙏 شكر وتقدير
+
+- شكرًا لجميع المساهمين والمطورين
+- مكتبات المصدر المفتوح التي استخدمناها
+
+---
+
+## 📞 التواصل
+
+للدعم والاستفسارات:
+
+- البريد الإلكتروني: support@example.com
+- موقع الويب: [www.example.com](https://www.example.com)
+
+---
+
+<div align="center">
+
+**صُنع بـ ❤️ باستخدام React و TypeScript**
+
+</div>

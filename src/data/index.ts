@@ -306,12 +306,14 @@ export const faqs = [
   },
 ];
 export const navlinks = [
-  { id: 1, label: "الرئيسية", href: "" },
-  { id: 2, label: "من نحن", href: "about" },
-  { id: 3, label: "خدماتنا", href: "services" },
-  { id: 5, label: "المدونة", href: "blog" },
-  { id: 6, label: "تواصل معنا", href: "contact" },
-  { id: 4, label: "الاسئلة الشائعه", href: "qa" },
+  { id: 1, label: "الرئيسية",        href: "" },
+  { id: 2, label: "من نحن",          href: "about" },
+  { id: 3, label: "خدماتنا",         href: "services" },
+  { id: 4, label: "آراء مرضانا",     href: "testimonials" },
+  { id: 5, label: "الأسئلة الشائعة", href: "faq" },
+  { id: 6, label: "المدونة",         href: "blog" },
+  { id: 7, label: "تواصل معنا",      href: "contact" },
+  
 ];
 export const contactData = [
   {

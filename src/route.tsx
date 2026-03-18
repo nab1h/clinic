@@ -9,6 +9,7 @@ import ServiceSinglePage from "./components/pages/ServiceSinglePage";
 import ServicePage from "./components/pages/ServicePage"; // 1. تأكد من استيراد صفحة الخدمات
 import AboutPage from "./components/pages/AboutPage";
 import QAPage from "./components/pages/QAPage";
+import TestimonialPage from "./components/pages/TestimonialPage";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: "artical/:id", 
         element: <ArticlePage />,
+      },
+      {
+        path: "testmnial", 
+        element: <TestimonialPage />,
       },
     ],
   },

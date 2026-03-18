@@ -52,7 +52,7 @@ const Layout = ({ children }: ILayoutProps)=>{
             <main className="mx-auto px-8 pt-1 mt-0 overflow-hidden">
                 {children}
             </main>
-            <ContactButtons whatsapp={whatsappLink?.url} number={content?.phone}/>
+            <ContactButtons whatsapp={whatsappLink?.url} number={content?.phone} clinicSlug={clinicSlug}/>
             <Footer address={content?.address} emailAddress={content?.email} phone={content?.phone}/>
         </div>
     );

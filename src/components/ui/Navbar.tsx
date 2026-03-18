@@ -33,13 +33,13 @@ const Navbar: React.FC<IProps> = ({ logo, clinicName = "عيادتنا" }) => {
                 smooth
                 to={`/${clinicSlug}/${link.href}`}
                 className={({ isActive }) => {
-                  const isCurrentHash =
-                    window.location.hash ===
-                    (link.href.includes("#")
-                      ? `#${link.href.split("#")[1]}`
-                      : "");
+                  const currentPath = window.location.pathname;
+                  const expectedPath = `/${clinicSlug}${link.href ? `/${link.href}` : ''}`;
+                  const isExactMatch = currentPath === expectedPath;
+                  const hashMatch = window.location.hash ===
+                    (link.href.includes("#") ? `#${link.href.split("#")[1]}` : "");
                   return `text-sm transition-colors duration-200 font-medium pb-1 ${
-                    isActive && isCurrentHash
+                    isExactMatch && hashMatch
                       ? "text-blue-600 font-bold border-b-2 border-blue-600"
                       : "text-gray-600 hover:text-blue-500"
                   }`;
@@ -96,14 +96,18 @@ const Navbar: React.FC<IProps> = ({ logo, clinicName = "عيادتنا" }) => {
               <li key={link.label}>
                 <NavHashLink
             smooth
-            to={link.href}
-            className={({ isActive }) => 
-              `block py-3 text-sm font-medium transition-all ${
-                isActive && window.location.hash === (link.href.includes('#') ? `#${link.href.split('#')[1]}` : '')
+            to={`/${clinicSlug}/${link.href}`}
+            className={({ isActive }) => {
+              const currentPath = window.location.pathname;
+              const expectedPath = `/${clinicSlug}${link.href ? `/${link.href}` : ''}`;
+              const isExactMatch = currentPath === expectedPath;
+              const hashMatch = window.location.hash === (link.href.includes('#') ? `#${link.href.split('#')[1]}` : '');
+              return `block py-3 text-sm font-medium transition-all ${
+                isExactMatch && hashMatch
                 ? "text-blue-600 bg-blue-50 px-3 rounded-md"
                 : "text-gray-600 hover:text-blue-600 px-3"
-              }`
-            }
+              }`;
+            }}
             onClick={() => setIsOpen(false)}
           >
             {link.label}
