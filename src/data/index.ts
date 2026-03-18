@@ -1,6 +1,5 @@
 import type {
   Doctor,
-  IArticle,
   IArticleCardProps,
   IPropBooking,
   IServices,

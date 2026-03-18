@@ -17,6 +17,7 @@ const BookingPage: React.FC<IProps> = () => {
   }, [clinicSlug]);
 
   const [data, setData] = useState<Clinic | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!clinicSlug) {
@@ -28,6 +29,9 @@ const BookingPage: React.FC<IProps> = () => {
       .catch(console.error)
       .finally(() => setLoading(false));
   }, [clinicSlug]);
+
+  if (loading) return <div className="flex items-center justify-center min-h-screen bg-[var(--color-primary)]">جاري التحميل...</div>;
+
   return (
     <div
       className="bg-[var(--color-primary)] min-h-screen -mx-16 px-8 px-16 py-16 mt-15"
@@ -72,12 +76,4 @@ const BookingPage: React.FC<IProps> = () => {
 };
 
 export default BookingPage;
-function setLinks(
-  value: SocialLink[],
-): SocialLink[] | PromiseLike<SocialLink[]> {
-  throw new Error("Function not implemented.");
-}
-function setLoading(arg0: boolean) {
-  throw new Error("Function not implemented.");
-}
 

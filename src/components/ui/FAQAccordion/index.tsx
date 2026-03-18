@@ -6,12 +6,6 @@ import type { FAQ } from "../../../interfaces";
 import { getFAQs } from "../../../api/faq";
 import LoadingScreen from "../../LoadingScreen";
 
-interface IFAQ {
-  id: number;
-  question: string;
-  answer: string;
-}
-
 const FAQAccordion = () => {
   const [openId, setOpenId] = useState<number | null>(null);
 

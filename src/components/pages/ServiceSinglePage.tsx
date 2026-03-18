@@ -2,7 +2,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import type { IService } from "../../interfaces";
 import { getServices } from "../../api/services";
-import { formatDate } from "../../until";
 
 const ServiceSinglePage = () => {
   const { id } = useParams<{ id: string }>();

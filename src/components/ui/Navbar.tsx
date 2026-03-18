@@ -32,7 +32,7 @@ const Navbar: React.FC<IProps> = ({ logo, clinicName = "عيادتنا" }) => {
               <NavHashLink
                 smooth
                 to={`/${clinicSlug}/${link.href}`}
-                className={({ isActive }) => {
+                className={() => {
                   const currentPath = window.location.pathname;
                   const expectedPath = `/${clinicSlug}${link.href ? `/${link.href}` : ''}`;
                   const isExactMatch = currentPath === expectedPath;
@@ -97,7 +97,7 @@ const Navbar: React.FC<IProps> = ({ logo, clinicName = "عيادتنا" }) => {
                 <NavHashLink
             smooth
             to={`/${clinicSlug}/${link.href}`}
-            className={({ isActive }) => {
+            className={() => {
               const currentPath = window.location.pathname;
               const expectedPath = `/${clinicSlug}${link.href ? `/${link.href}` : ''}`;
               const isExactMatch = currentPath === expectedPath;
