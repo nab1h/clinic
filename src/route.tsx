@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
         element: <ContactPage />,
       },
       {
-        path: "qa",
+        path: "faq",
         element: <QAPage />,
       },
       {
@@ -53,7 +53,7 @@ export const router = createBrowserRouter([
         element: <ArticlePage />,
       },
       {
-        path: "testmnial", 
+        path: "testimonials", 
         element: <TestimonialPage />,
       },
     ],
