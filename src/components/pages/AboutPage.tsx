@@ -59,7 +59,7 @@ const AboutPage = () => {
           style={{ height: "400px" }}
         >
           <img
-            src={`${baseURL}/storage/${data?.logo}`}
+            src={`${baseURL}/storage/${data?.surrounding_image}`}
             alt="about"
             className="w-full h-full object-cover"
           />

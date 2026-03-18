@@ -8,7 +8,6 @@ import axios from "axios";
 import LoadingScreen from "../LoadingScreen";
 
 interface IProps {}
-
 const HomePage: React.FC<IProps> = () => {
   const baseURL = import.meta.env.VITE_API_URL;
   const { clinicSlug } = useParams<{ clinicSlug: string }>();
@@ -40,12 +39,10 @@ const HomePage: React.FC<IProps> = () => {
   const bgImage = content?.background_image
     ? `${baseURL}/storage/${content.background_image}`
     : "/img/hero.jpg";
-
   return (
     <div
       className="hero-section min-h-screen -mx-16 px-16 md:px-16 flex items-center"
       id="home"
-      // ✅ inline style بدل الـ SCSS الستاتيك
       style={{
         backgroundImage: `url('${bgImage}')`,
         backgroundSize: "cover",
@@ -77,5 +74,4 @@ const HomePage: React.FC<IProps> = () => {
     </div>
   );
 };
-
 export default HomePage;
