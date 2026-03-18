@@ -79,6 +79,8 @@ export interface Clinic {
   phone: string;
   address: string;
   logo: string;
+  background_image: string | null;
+  surrounding_image: string | null;
   favicon: string | null;
   icon_16: string | null;
   icon_32: string | null;
@@ -86,6 +88,8 @@ export interface Clinic {
   icon_180: string | null;
   icon_192: string | null;
   icon_512: string | null;
+  google_maps: string | null;
+  working_hours: string | null;  
   settings: ClinicSettings;
 }
 export interface Appointment {
